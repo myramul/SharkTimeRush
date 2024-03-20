@@ -1,7 +1,13 @@
+@font-face {
+  font-family: 'SharkTimeRush';
+  src: url('fonts/Minecrafter.Reg.ttf');
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   user-select: none;
-  font-family: monospace;
+  font-family: 'SharkTimeRush';
+  color: #ffda41;
 }
 
 body {
@@ -31,7 +37,7 @@ body {
 .start-screen {
   position: absolute;
   font-size: 5vmin;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
