@@ -6,7 +6,7 @@ import {
 
 const SPEED = 0.05
 const OBSTACLE_INTERVAL_MIN = 500
-const OBSTACLE_INTERVAL_MAX = 2000
+const OBSTACLE_INTERVAL_MAX = 2500
 const worldElem = document.querySelector("[data-world]")
 
 let nextObstacleTime
