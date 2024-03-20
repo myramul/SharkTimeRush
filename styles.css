@@ -8,6 +8,7 @@
   user-select: none;
   font-family: 'SharkTimeRush';
   color: #ffda41;
+  text-shadow: 2px 2px 3.5px darkorange;
 }
 
 body {
@@ -30,7 +31,7 @@ body {
 .score {
   position: absolute;
   font-size: 5vmin;
-  right: 1vmin;
+  right: 4vmin;
   top: 1vmin;
 }
 
