@@ -6,7 +6,7 @@ import {
 
 const SPEED = 0.05
 const OBSTACLE_INTERVAL_MIN = 550
-const OBSTACLE_INTERVAL_MAX = 2500
+const OBSTACLE_INTERVAL_MAX = 2000
 const worldElem = document.querySelector("[data-world]")
 
 let nextObstacleTime
@@ -40,12 +40,32 @@ export function getObstacleRects() {
 }
 
 function createObstacle() {
-  const obstacle = document.createElement("img")
-  obstacle.dataset.obstacle = true
-  obstacle.src = "imgs/obstacle.png"
-  obstacle.classList.add("obstacle")
-  setCustomProperty(obstacle, "--left", 100)
-  worldElem.append(obstacle)
+  const obstacleType = Math.random() < 0.75 ? "ground" : "air"; 
+
+  const obstacle = document.createElement("img");
+  obstacle.dataset.obstacle = true;
+
+  if (obstacleType === "ground") {
+    obstacle.src = "imgs/obstacle.png";
+    setCustomProperty(obstacle, "--top", 0);
+    obstacle.style.height = "25%";
+  } else {
+    let isOpen = false;
+    obstacle.style.top = "62%"; 
+    obstacle.style.height = "15%";
+    setInterval(() => {
+      if (isOpen) {
+        obstacle.src = "imgs/obstacle-sky-0.png"; 
+      } else {
+        obstacle.src = "imgs/obstacle-sky-1.png";
+      }
+      isOpen = !isOpen;
+    }, 300); 
+  }
+
+  obstacle.classList.add("obstacle");
+  setCustomProperty(obstacle, "--left", 100);
+  worldElem.append(obstacle);
 }
 
 function randomNumberBetween(min, max) {

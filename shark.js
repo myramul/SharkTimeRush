@@ -14,18 +14,18 @@ let isJumping
 let sharkFrame
 let currentFrameTime
 let yVelocity
-let isDucking = false;
-let isArrowDownPressed = false; 
+let isDucking
+let isArrowDownPressed
 
 document.addEventListener("keydown", (e) => {
   if (e.code === "ArrowDown") {
-    isArrowDownPressed = true;
+    isArrowDownPressed = true
   }
 });
 
 document.addEventListener("keyup", (e) => {
   if (e.code === "ArrowDown") {
-    isArrowDownPressed = false;
+    isArrowDownPressed = false
   }
 });
 export function setupShark() {
@@ -33,6 +33,9 @@ export function setupShark() {
   sharkFrame = 0
   currentFrameTime = 0
   yVelocity = 0
+  isDucking = false
+  isArrowDownPressed = false
+  sharkElem.style.height = "30%";
   setCustomProperty(sharkElem, "--bottom", 0)
   document.removeEventListener("keydown", onMovement)
   document.addEventListener("keydown", onMovement)
@@ -48,7 +51,13 @@ export function getSharkRect() {
 }
 
 export function setSharkLose() {
-  sharkElem.src = "imgs/shark-lose.png"
+  if (isDucking && isArrowDownPressed) {
+    sharkElem.src = "imgs/shark-duck-lose.png";
+    sharkElem.style.height = "20%";
+    return;
+  }
+  sharkElem.src = "imgs/shark-lose.png";
+  sharkElem.style.height = "30%";
 }
 
 function handleRun(delta, speedScale) {
