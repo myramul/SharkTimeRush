@@ -97,7 +97,7 @@ function handleLose() {
   setTimeout(() => {
     document.addEventListener("keydown", handleStart, { once: true })
     startScreenElem.classList.remove("hide")
-    startScreenElem.innerText = "game over \n press any key to play again"
+    startScreenElem.innerText = "game over \n SCORE: " + Math.floor(score) + "\npress space to play again"
   }, 100)
 }
 
