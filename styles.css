@@ -108,3 +108,12 @@ body {
   height: 25%;
   bottom: 0;
 }
+
+.credits{
+  text-align: center;
+}
+
+.credits .title-credits {
+  color: cyan;
+  text-shadow: 2px 2px 3.5px darkcyan;
+}
