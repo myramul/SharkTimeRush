@@ -23,12 +23,12 @@
   background-color: black;
   color: white;
   font-size: 24px;
-  opacity: 0; /* Start as invisible */
-  visibility: hidden; /* Start as hidden */
-  transition: opacity 1s linear, visibility 0s linear 1s; /* Delay visibility change */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s linear, visibility 0s linear 1s;
 }
 
-/* Use this class to make the screens visible */
+
 .visible {
   opacity: 1;
   visibility: visible;
