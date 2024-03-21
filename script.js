@@ -2,6 +2,28 @@ import { updateGround, setupGround } from "./ground.js"
 import { updateShark, setupShark, getSharkRect, setSharkLose } from "./shark.js"
 import { updateObstacle, setupObstacle, getObstacleRects } from "./obstacle.js"
 
+document.addEventListener("DOMContentLoaded", () => {
+  const logoScreenElem = document.querySelector("[data-logo-screen]");
+  const creditsScreenElem = document.querySelector("[data-credits-screen]");
+  const worldElem = document.querySelector("[data-world]");
+  const startScreenElem = document.querySelector("[data-start-screen]");
+
+  logoScreenElem.classList.add("visible");
+  setTimeout(() => {
+    logoScreenElem.classList.remove("visible");
+    setTimeout(() => {
+      creditsScreenElem.classList.add("visible");
+      setTimeout(() => {
+        creditsScreenElem.classList.remove("visible");
+        worldElem.classList.add("grow");
+        setTimeout(() => {
+          startScreenElem.classList.remove("hide");
+        }, 3000);
+      }, 3000);
+    }, 1000);
+  }, 2000); 
+});
+
 const WORLD_WIDTH = 100
 const WORLD_HEIGHT = 30
 const SPEED_SCALE_INCREASE = 0.00001
