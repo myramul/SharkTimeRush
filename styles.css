@@ -117,3 +117,12 @@ body {
   color: cyan;
   text-shadow: 2px 2px 3.5px darkcyan;
 }
+
+.high-score {
+  position: absolute;
+  font-size: 3.5vmin;
+  right: 2vmin;
+  top: 5vmin;
+  color: #f4a261;
+  text-shadow: 2px 2px 3.5px #ff4040;
+}

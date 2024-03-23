@@ -18,10 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
         worldElem.classList.add("grow");
         setTimeout(() => {
           startScreenElem.classList.remove("hide");
-        }, 3000);
-      }, 3000);
-    }, 1000);
-  }, 2000); 
+        }, 2000);
+      }, 2000);
+    }, 1500);
+  }, 1500); 
 });
 
 const WORLD_WIDTH = 100
@@ -31,14 +31,28 @@ const SPEED_SCALE_INCREASE = 0.00001
 const worldElem = document.querySelector("[data-world]")
 const scoreElem = document.querySelector("[data-score]")
 const startScreenElem = document.querySelector("[data-start-screen]")
+const highScoreElem = document.querySelector("[data-high]")
 
 setPixelToWorldScale()
 window.addEventListener("resize", setPixelToWorldScale)
-document.addEventListener("keydown", handleStart, { once: true })
+let isGameStarted = false
+document.addEventListener('keydown', (e) => {
+  if (e.keyCode === 32 && !isGameStarted) {
+    isGameStarted = true;
+    handleStart();
+  }
+});
 
 let lastTime
 let speedScale
 let score
+
+const storedHighScore = localStorage.getItem('highScore');
+if (storedHighScore) {
+  highScoreElem.innerText = `HI: ${storedHighScore}`;
+} else {
+  highScoreElem.innerText = `HI: 0`;
+}
 function update(time) {
   if (lastTime == null) {
     lastTime = time
@@ -94,11 +108,22 @@ function handleStart() {
 
 function handleLose() {
   setSharkLose()
-  setTimeout(() => {
-    document.addEventListener("keydown", handleStart, { once: true })
-    startScreenElem.classList.remove("hide")
+  isGameStarted = false
+  
+  if (score > storedHighScore){
+    localStorage.setItem('highScore', Math.floor(score));
+    highScoreElem.innerText = `HI: ${Math.floor(score)}`;
+    startScreenElem.innerText = "game over \n NEW HIGH SCORE: " + Math.floor(score) + "\npress space to play again"
+  }else{
     startScreenElem.innerText = "game over \n SCORE: " + Math.floor(score) + "\npress space to play again"
-  }, 100)
+  }
+  startScreenElem.classList.remove("hide")
+  document.addEventListener('keydown', (e) => {
+    if (e.keyCode === 32 && !isGameStarted) {
+      isGameStarted = true;
+      handleStart();
+    }
+  });
 }
 
 function setPixelToWorldScale() {
@@ -112,3 +137,5 @@ function setPixelToWorldScale() {
   worldElem.style.width = `${WORLD_WIDTH * worldToPixelScale}px`
   worldElem.style.height = `${WORLD_HEIGHT * worldToPixelScale}px`
 }
+
+// changes: shorter intro, added hi score, rem jump while duck, only space to start

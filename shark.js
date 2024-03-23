@@ -108,8 +108,8 @@ function onMovement(e) {
     isDucking = false;
   }
 
-  if (e.code !== "Space" || isJumping) return;
-
-  yVelocity = JUMP_SPEED;
-  isJumping = true;
+  if (e.code === "Space" && !isJumping && !isDucking) {
+    yVelocity = JUMP_SPEED;
+    isJumping = true;
+  }
 }
