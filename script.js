@@ -49,9 +49,9 @@ let score
 
 const storedHighScore = localStorage.getItem('highScore');
 if (storedHighScore) {
-  highScoreElem.innerText = `HI: ${storedHighScore}`;
+  highScoreElem.innerText = `HIGH: ${storedHighScore}`;
 } else {
-  highScoreElem.innerText = `HI: 0`;
+  highScoreElem.innerText = `HIGH: 0`;
 }
 function update(time) {
   if (lastTime == null) {
@@ -112,10 +112,10 @@ function handleLose() {
   
   if (score > storedHighScore){
     localStorage.setItem('highScore', Math.floor(score));
-    highScoreElem.innerText = `HI: ${Math.floor(score)}`;
+    highScoreElem.innerText = `HIGH: ${Math.floor(score)}`;
     startScreenElem.innerText = "game over \n NEW HIGH SCORE: " + Math.floor(score) + "\npress space to play again"
   }else{
-    startScreenElem.innerText = "game over \n SCORE: " + Math.floor(score) + "\npress space to play again"
+    startScreenElem.innerText = "game over \n SCORE: " + Math.floor(score) + "  HIGH: " + storedHighScore + "\npress space to play again"
   }
   startScreenElem.classList.remove("hide")
   document.addEventListener('keydown', (e) => {
@@ -137,5 +137,3 @@ function setPixelToWorldScale() {
   worldElem.style.width = `${WORLD_WIDTH * worldToPixelScale}px`
   worldElem.style.height = `${WORLD_HEIGHT * worldToPixelScale}px`
 }
-
-// changes: shorter intro, added hi score, rem jump while duck, only space to start

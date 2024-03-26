@@ -126,3 +126,27 @@ body {
   color: #f4a261;
   text-shadow: 2px 2px 3.5px #ff4040;
 }
+
+.menu-btn{
+  position: absolute;
+  right: 2vmin;
+  top: 10vmin;
+  padding: 10px 13px;
+  font-size: 18px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  text-shadow: none;
+  background-color: #92CD41;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 2px #999;
+}
+
+.menu-btn:hover {background-color: #74a434}
+.menu-btn:active {
+  background-color: #74a434;
+  box-shadow: 0 1px #666;
+  transform: translateY(4px);
+}
