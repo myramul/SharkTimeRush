@@ -47,12 +47,12 @@ let lastTime
 let speedScale
 let score
 
-const storedHighScore = localStorage.getItem('highScore');
-if (storedHighScore) {
-  highScoreElem.innerText = `HIGH: ${storedHighScore}`;
+if (localStorage.getItem('highScore')) {
+  highScoreElem.innerText = `HIGH: ${localStorage.getItem('highScore')}`;
 } else {
   highScoreElem.innerText = `HIGH: 0`;
 }
+
 function update(time) {
   if (lastTime == null) {
     lastTime = time
@@ -104,18 +104,24 @@ function handleStart() {
   setupObstacle()
   startScreenElem.classList.add("hide")
   window.requestAnimationFrame(update)
+
+  if (localStorage.getItem('highScore')) {
+    highScoreElem.innerText = `HIGH: ${localStorage.getItem('highScore')}`;
+  } else {
+    highScoreElem.innerText = `HIGH: 0`;
+  }
 }
 
 function handleLose() {
   setSharkLose()
   isGameStarted = false
   
-  if (score > storedHighScore){
+  if (score > localStorage.getItem('highScore')){
     localStorage.setItem('highScore', Math.floor(score));
     highScoreElem.innerText = `HIGH: ${Math.floor(score)}`;
     startScreenElem.innerText = "game over \n NEW HIGH SCORE: " + Math.floor(score) + "\npress space to play again"
   }else{
-    startScreenElem.innerText = "game over \n SCORE: " + Math.floor(score) + "  HIGH: " + storedHighScore + "\npress space to play again"
+    startScreenElem.innerText = "game over \n SCORE: " + Math.floor(score) + "  HIGH: " + localStorage.getItem('highScore') + "\npress space to play again"
   }
   startScreenElem.classList.remove("hide")
   document.addEventListener('keydown', (e) => {
