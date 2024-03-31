@@ -3,6 +3,10 @@
   src: url('fonts/Minecrafter/Minecrafter.Reg.ttf');
 }
 
+@font-face {
+  font-family: 'RetroComputer';
+  src: url('fonts/RetroComputer/retro_computer_personal_use.ttf');
+}
 *, *::before, *::after {
   box-sizing: border-box;
   user-select: none;
@@ -149,4 +153,90 @@ body {
   background-color: #74a434;
   box-shadow: 0 1px #666;
   transform: translateY(4px);
+}
+
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%;
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #e2eff3;
+  margin: 15% auto; 
+  padding: 20px;
+  border-radius: 10px;
+  width: 40%;
+  text-align: center;
+  box-shadow: 2px 2px 2px 0.75px rgba(84, 84, 84, 0.75);
+}
+
+.title-modal{
+  color: #135b77;
+  text-shadow: 0.5px 0.5px 1px rgb(3, 44, 60);
+  font-size: 35px;
+}
+
+.input-username{
+  font-family: 'RetroComputer', monospace;
+  color: rgb(3, 44, 60);
+  font-size: 25px;
+  text-shadow: none;
+  text-align: center;
+  height: 45px;
+  border-radius: 10px;
+  background-color: #e2eff3;
+}
+
+.user-label{
+  color: #92CD41;
+  text-shadow: 0.5px 0.5px 1px #477507;
+  font-size: 25px;
+  font-family: 'RetroComputer', monospace;
+}
+
+.submit-btn{
+  padding: 10px 13px;
+  font-size: 18px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  text-shadow: none;
+  background-color: #92CD41;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 2px #999;
+}
+
+.submit-btn:hover {background-color: rgb(91, 148, 11)}
+.submit-btn:active {
+  background-color: rgb(91, 148, 11);
+  box-shadow: 0 1px #666;
+  transform: translateY(4px);
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 23px;
+  font-weight: bold;
+  text-shadow: none;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.username-entry-modal {
+  display: none;
 }

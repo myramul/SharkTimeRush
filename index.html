@@ -10,6 +10,17 @@
   <script src="script.js" type="module"></script>
 </head>
 <body>
+  <div id="username-entry-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2 class ="title-modal">New Leaderboard Entry</h2>
+      <form id="username-form">
+        <label for="username" class="user-label">ENTER YOUR USERNAME</label><br><br>
+        <input type="text" id="username" name="username" class="input-username"><br><br>
+        <input type="submit" value="Enter" class="submit-btn">
+      </form>
+    </div>
+  </div>
   <div class="logo-screen" data-logo-screen>
     <img src="imgs/postgames.jpg" alt="CompanyLogo" class="company-logo">
   </div>

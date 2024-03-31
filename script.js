@@ -32,26 +32,33 @@ const worldElem = document.querySelector("[data-world]")
 const scoreElem = document.querySelector("[data-score]")
 const startScreenElem = document.querySelector("[data-start-screen]")
 const highScoreElem = document.querySelector("[data-high]")
+const usernameEntryModal = document.getElementById("username-entry-modal");
+const usernameForm = document.getElementById("username-form");
+const modalCloseBtn = document.getElementsByClassName("close")[0];
 
 setPixelToWorldScale()
 window.addEventListener("resize", setPixelToWorldScale)
 let isGameStarted = false
-document.addEventListener('keydown', (e) => {
+
+const spaceKeyHandler = (e) => {
   if (e.keyCode === 32 && !isGameStarted) {
     isGameStarted = true;
     handleStart();
   }
-});
+};
+document.addEventListener("keydown", spaceKeyHandler);
 
 let lastTime
 let speedScale
 let score
+let leaderboard
+let currHighScore = 0
 
-if (localStorage.getItem('highScore')) {
-  highScoreElem.innerText = `HIGH: ${localStorage.getItem('highScore')}`;
-} else {
-  highScoreElem.innerText = `HIGH: 0`;
-}
+leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || []
+if (leaderboard.length > 0) {
+  currHighScore = leaderboard[0].score
+  highScoreElem.innerText = `HIGH: ${currHighScore}`;
+} 
 
 function update(time) {
   if (lastTime == null) {
@@ -95,41 +102,67 @@ function updateScore(delta) {
   scoreElem.textContent = Math.floor(score)
 }
 
+function updateLeaderboard(sc, user){
+  leaderboard.push({score: sc, user: user})
+  leaderboard.sort((a,b) => b.score - a.score)
+  leaderboard = leaderboard.slice(0, 5) // only top 5 scores stored
+  localStorage.setItem('leaderboard', JSON.stringify(leaderboard))
+}
+
 function handleStart() {
   lastTime = null
   speedScale = 1
   score = 0
+  leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || []
   setupGround()
   setupShark()
   setupObstacle()
   startScreenElem.classList.add("hide")
   window.requestAnimationFrame(update)
 
-  if (localStorage.getItem('highScore')) {
-    highScoreElem.innerText = `HIGH: ${localStorage.getItem('highScore')}`;
-  } else {
-    highScoreElem.innerText = `HIGH: 0`;
-  }
+  if (leaderboard.length > 0) {
+    currHighScore = leaderboard[0].score
+    highScoreElem.innerText = `HIGH: ${currHighScore}`;
+  } 
 }
 
-function handleLose() {
+async function handleLose() {
   setSharkLose()
   isGameStarted = false
-  
-  if (score > localStorage.getItem('highScore')){
-    localStorage.setItem('highScore', Math.floor(score));
-    highScoreElem.innerText = `HIGH: ${Math.floor(score)}`;
+
+  if (score > currHighScore){
     startScreenElem.innerText = "game over \n NEW HIGH SCORE: " + Math.floor(score) + "\npress space to play again"
   }else{
-    startScreenElem.innerText = "game over \n SCORE: " + Math.floor(score) + "  HIGH: " + localStorage.getItem('highScore') + "\npress space to play again"
+    startScreenElem.innerText = "game over \n SCORE: " + Math.floor(score) + "  HIGH: " + currHighScore + "\npress space to play again"
   }
   startScreenElem.classList.remove("hide")
-  document.addEventListener('keydown', (e) => {
-    if (e.keyCode === 32 && !isGameStarted) {
-      isGameStarted = true;
-      handleStart();
+
+  if (leaderboard.length < 5|| score >= leaderboard[leaderboard.length - 1].score) {
+    usernameEntryModal.style.display = "block";
+    document.removeEventListener('keydown', spaceKeyHandler);
+    modalCloseBtn.onclick = function() { 
+      usernameEntryModal.style.display = "none";
     }
-  });
+    
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        usernameEntryModal.style.display = "none";
+      }
+    }
+
+     await new Promise((resolve, reject) => {
+      usernameForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+        var username = document.getElementById("username").value;
+        updateLeaderboard(Math.floor(score), username)
+        usernameEntryModal.style.display = "none";
+        resolve();
+      });
+    });
+    await new Promise(resolve => setTimeout(resolve, 900));
+  }
+  document.addEventListener('keydown', spaceKeyHandler);
+  window.alert("LEADERBOARD\n" + leaderboard.map((entry, i) => `${i + 1}. ${entry.user} - ${entry.score}`).join("\n"))
 }
 
 function setPixelToWorldScale() {
