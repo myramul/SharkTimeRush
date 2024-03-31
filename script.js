@@ -175,8 +175,11 @@ async function handleLose() {
       usernameForm.addEventListener("submit", function(event) {
         event.preventDefault();
         var username = document.getElementById("username").value;
-        updateLeaderboard(Math.floor(score), username)
+        if (username !== "") {
+          updateLeaderboard(Math.floor(score), username);
+        }
         usernameEntryModal.style.display = "none";
+        document.getElementById("username").value = "";
         resolve();
       });
     });
