@@ -1,3 +1,6 @@
+// obstacle.js
+  // contains the obstacle logic for the game -- ground and sky obstacles
+
 import {
   setCustomProperty,
   incrementCustomProperty,
@@ -5,8 +8,8 @@ import {
 } from "./updateCustomProperty.js"
 
 const SPEED = 0.05
-const OBSTACLE_INTERVAL_MIN = 550
-const OBSTACLE_INTERVAL_MAX = 2000
+const OBSTACLE_INTERVAL_MIN = 550 // min time between obstacles
+const OBSTACLE_INTERVAL_MAX = 2000 // max time between obstacles
 const worldElem = document.querySelector("[data-world]")
 
 let nextObstacleTime
@@ -33,6 +36,7 @@ export function updateObstacle(delta, speedScale) {
   nextObstacleTime -= delta
 }
 
+// randomly displays obstacle
 export function getObstacleRects() {
   return [...document.querySelectorAll("[data-obstacle]")].map(obstacle => {
     return obstacle.getBoundingClientRect()
@@ -40,11 +44,13 @@ export function getObstacleRects() {
 }
 
 function createObstacle() {
+  // create ground or sky obstacle -- ground more common
   const obstacleType = Math.random() < 0.75 ? "ground" : "air"; 
 
   const obstacle = document.createElement("img");
   obstacle.dataset.obstacle = true;
 
+  // display ground or sky obstacle
   if (obstacleType === "ground") {
     obstacle.src = "imgs/obstacle.png";
     setCustomProperty(obstacle, "--top", 0);

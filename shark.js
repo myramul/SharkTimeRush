@@ -1,3 +1,6 @@
+// shark.js
+  // contains the logic for the shark character
+
 import {
   incrementCustomProperty,
   setCustomProperty,
@@ -7,8 +10,8 @@ import {
 const sharkElem = document.querySelector("[data-shark]")
 const JUMP_SPEED = 0.45
 const GRAVITY = 0.0015
-const SHARK_FRAME_COUNT = 4
-const FRAME_TIME = 100
+const SHARK_FRAME_COUNT = 4 // number of frames in the animation of shark running
+const FRAME_TIME = 100 // how many milliseconds each frame takes
 
 let isJumping
 let sharkFrame
@@ -16,6 +19,7 @@ let currentFrameTime
 let yVelocity
 let isDucking
 let isArrowDownPressed
+
 
 document.addEventListener("keydown", (e) => {
   if (e.code === "ArrowDown") {
@@ -50,6 +54,7 @@ export function getSharkRect() {
   return sharkElem.getBoundingClientRect()
 }
 
+// sets the shark lose sprite depending on if ducking or running
 export function setSharkLose() {
   if (isDucking && isArrowDownPressed) {
     sharkElem.src = "imgs/shark-duck-lose.png";
@@ -60,6 +65,7 @@ export function setSharkLose() {
   sharkElem.style.height = "30%";
 }
 
+// handles the movement of the shark -- changes imgs according to if ducking or running or jumping
 function handleRun(delta, speedScale) {
   if (isJumping) {
     sharkElem.src = `imgs/shark-stationary.png`;
@@ -88,6 +94,7 @@ function handleRun(delta, speedScale) {
   currentFrameTime += delta * speedScale;
 }
 
+// handles the jump of the shark
 function handleJump(delta) {
   if (!isJumping) return
 
@@ -101,6 +108,7 @@ function handleJump(delta) {
   yVelocity -= GRAVITY * delta
 }
 
+// handles controls for the shark -- jumping and ducking -- space or arrow down
 function onMovement(e) {
   if (e.code === "ArrowDown" && e.type === "keydown") {
     isDucking = true;
