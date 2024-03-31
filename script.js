@@ -40,6 +40,16 @@ const usernameEntryModal = document.getElementById("username-entry-modal");
 const usernameForm = document.getElementById("username-form");
 const modalCloseBtn = document.getElementsByClassName("close")[0];
 const modalScore = document.getElementById("new-leaderboard-score");
+const menuButton = document.getElementById("menu-btn");
+let isPaused = false;
+function pauseGame() {
+  cancelAnimationFrame(lastTime);
+}
+
+function resumeGame() {
+  lastTime = null;
+  window.requestAnimationFrame(update);
+}
 
 setPixelToWorldScale()
 window.addEventListener("resize", setPixelToWorldScale)
@@ -69,23 +79,39 @@ if (leaderboard.length > 0) {
 
 // updates game elements based on time passed since last update. 
 function update(time) {
-  if (lastTime == null) {
-    lastTime = time
-    window.requestAnimationFrame(update)
-    return
+  if (!isPaused) {
+    if (lastTime == null) {
+      lastTime = time;
+    }
+    const delta = time - lastTime;
+
+    // Only update game elements if the game is not paused
+    updateGround(delta, speedScale);
+    updateShark(delta, speedScale);
+    updateObstacle(delta, speedScale);
+    updateSpeedScale(delta);
+    updateScore(delta);
+    if (checkLose()) {
+      return handleLose();
+    }
+
+    lastTime = time;
   }
-  const delta = time - lastTime
-
-  updateGround(delta, speedScale)
-  updateShark(delta, speedScale)
-  updateObstacle(delta, speedScale)
-  updateSpeedScale(delta)
-  updateScore(delta)
-  if (checkLose()) return handleLose()
-
-  lastTime = time
-  window.requestAnimationFrame(update)
+  window.requestAnimationFrame(update);
 }
+
+menuButton.addEventListener("click", () => {
+  if (!isPaused) {
+    isPaused = true;
+    pauseGame();
+    menuButton.textContent = "Resume";
+  } else {
+    isPaused = false;
+    resumeGame();
+    menuButton.textContent = "Menu";
+  }
+});
+
 
 function checkLose() {
   const sharkRect = getSharkRect()
@@ -187,7 +213,9 @@ async function handleLose() {
   }
   // displays the leaderboard and the space button is used to restart the game
   document.addEventListener('keydown', spaceKeyHandler);
-  window.alert("LEADERBOARD\n" + leaderboard.map((entry, i) => `${i + 1}. ${entry.user} - ${entry.score}`).join("\n"))
+  setTimeout(function() {
+    window.alert("LEADERBOARD\n" + leaderboard.map((entry, i) => `${i + 1}. ${entry.user} - ${entry.score}`).join("\n"));
+  }, 150);
 }
 
 // sets the width and height of the world element
