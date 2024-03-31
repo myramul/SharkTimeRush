@@ -13,10 +13,11 @@
   <div id="username-entry-modal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
-      <h2 class ="title-modal">New Leaderboard Entry</h2>
+      <h2 class ="title-modal" style="padding-bottom: 4px;">New Leaderboard Entry</h2>
+      <h1 id="new-leaderboard-score" class="title-modal" style="padding-top: 4px; font-size: 35px; color: #92CD41;  text-shadow: 1px 1px 1.5px #477507; "></h1>
       <form id="username-form">
         <label for="username" class="user-label">ENTER YOUR USERNAME</label><br><br>
-        <input type="text" id="username" name="username" class="input-username"><br><br>
+        <input type="text" id="username" name="username" class="input-username" minlength="1" maxlength="7"><br><br>
         <input type="submit" value="Enter" class="submit-btn">
       </form>
     </div>
@@ -27,20 +28,20 @@
   <div class="credits-screen" data-credits-screen>
     <div class="credits">
       <h1 class="title-credits">Shark Time Rush</h1>
-      <p>Ben Simens</p>
-      <p>Myra Mulongoti</p>
-      <p>Mehvish Hussain</p>
-      <p>Nate Pyram</p>
-      <p>Kyle Goodey</p>
       <p>John Fentnor</p>
+      <p>Kyle Goodey</p>
+      <p>Mehvish Hussain</p>
+      <p>Myra Mulongoti</p>
       <p>Samina Mussarat</p>
+      <p>Nate Pyram</p>
+      <p>Ben Simens</p>
     </div>
   </div>
   <div class="world" data-world>
     <button class="menu-btn">MENU</button>
     <div class = "high-score" data-high>HIGH: 0</div>
     <div class="score" data-score>0</div>
-    <div class="start-screen" data-start-screen>SHARK TIME RUSH <br> press space to start</div>
+    <div class="start-screen" data-start-screen>SHARK TIME RUSH<br>press space to start</div>
     <img src="imgs/ground.png" class="ground" data-ground>
     <img src="imgs/ground.png" class="ground" data-ground>
     <img src="imgs/shark-stationary.png" class="shark" data-shark>

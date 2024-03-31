@@ -39,6 +39,7 @@ const highScoreElem = document.querySelector("[data-high]")
 const usernameEntryModal = document.getElementById("username-entry-modal");
 const usernameForm = document.getElementById("username-form");
 const modalCloseBtn = document.getElementsByClassName("close")[0];
+const modalScore = document.getElementById("new-leaderboard-score");
 
 setPixelToWorldScale()
 window.addEventListener("resize", setPixelToWorldScale)
@@ -114,7 +115,7 @@ function updateScore(delta) {
 
 // takes a score and username and adds them to leaderboard
 function updateLeaderboard(sc, user){
-  leaderboard.push({score: sc, user: user})
+  leaderboard.push({score: sc, user: user.toUpperCase()})
   leaderboard.sort((a,b) => b.score - a.score)
   leaderboard = leaderboard.slice(0, 5) // only top 5 scores stored
   localStorage.setItem('leaderboard', JSON.stringify(leaderboard))
@@ -153,17 +154,20 @@ async function handleLose() {
 
   // if score is high enough to add to leaderboard, it adds it
   if (leaderboard.length < 5|| score >= leaderboard[leaderboard.length - 1].score) {
+    modalScore.innerText = 'SCORE: ' + Math.floor(score);
     usernameEntryModal.style.display = "block";
 
     // disables space bar from restarting the game while user is typing
     document.removeEventListener('keydown', spaceKeyHandler);
     modalCloseBtn.onclick = function() { 
       usernameEntryModal.style.display = "none";
+      document.addEventListener('keydown', spaceKeyHandler);
     }
     
     window.onclick = function(event) {
       if (event.target == modal) {
         usernameEntryModal.style.display = "none";
+        document.addEventListener('keydown', spaceKeyHandler);
       }
     }
     // makes rest of function wait for user to finish typing username
@@ -176,7 +180,7 @@ async function handleLose() {
         resolve();
       });
     });
-    await new Promise(resolve => setTimeout(resolve, 900));
+    await new Promise(resolve => setTimeout(resolve, 150));
   }
   // displays the leaderboard and the space button is used to restart the game
   document.addEventListener('keydown', spaceKeyHandler);
