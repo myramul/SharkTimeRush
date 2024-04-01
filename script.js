@@ -172,6 +172,7 @@ function handleStart() {
 async function handleLose() {
   setSharkLose()
   isGameStarted = false
+  document.removeEventListener('keydown', spaceKeyHandler);
 
   // displays game over screen depending on score
   if (score > currHighScore){
@@ -187,17 +188,14 @@ async function handleLose() {
     usernameEntryModal.style.display = "block";
 
     // disables space bar from restarting the game while user is typing
-    document.removeEventListener('keydown', spaceKeyHandler);
+    // document.removeEventListener('keydown', spaceKeyHandler);
     modalCloseBtn.onclick = function() { 
       usernameEntryModal.style.display = "none";
-      document.addEventListener('keydown', spaceKeyHandler);
     }
     
     window.onclick = function(event) {
       if (event.target == modal) {
         usernameEntryModal.style.display = "none";
-        leaderboardModal.style.display = "none";
-        document.addEventListener('keydown', spaceKeyHandler);
       }
     }
     // makes rest of function wait for user to finish typing username
@@ -224,9 +222,9 @@ async function handleLose() {
     });
     leaderboardCloseBtn.onclick = function() { 
       leaderboardModal.style.display = "none";
+      document.addEventListener('keydown', spaceKeyHandler);
     }
   }, 150);
-  document.addEventListener('keydown', spaceKeyHandler);
 }
 
 // sets the width and height of the world element

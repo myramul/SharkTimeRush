@@ -233,7 +233,7 @@ body {
 
 .close:hover,
 .close:focus {
-  color: black;
+  color: rgb(203, 7, 7);
   text-decoration: none;
   cursor: pointer;
 }
