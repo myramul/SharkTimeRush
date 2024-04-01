@@ -41,6 +41,8 @@ const usernameForm = document.getElementById("username-form");
 const modalCloseBtn = document.getElementsByClassName("close")[0];
 const modalScore = document.getElementById("new-leaderboard-score");
 const menuButton = document.getElementById("menu-btn");
+const leaderboardModal = document.getElementById("leaderboard-modal");
+const leaderboardCloseBtn = document.getElementsByClassName("close")[1];
 let isPaused = false;
 function pauseGame() {
   cancelAnimationFrame(lastTime);
@@ -194,6 +196,7 @@ async function handleLose() {
     window.onclick = function(event) {
       if (event.target == modal) {
         usernameEntryModal.style.display = "none";
+        leaderboardModal.style.display = "none";
         document.addEventListener('keydown', spaceKeyHandler);
       }
     }
@@ -212,11 +215,18 @@ async function handleLose() {
     });
     await new Promise(resolve => setTimeout(resolve, 150));
   }
-  // displays the leaderboard and the space button is used to restart the game
-  document.addEventListener('keydown', spaceKeyHandler);
+  
   setTimeout(function() {
-    window.alert("LEADERBOARD\n" + leaderboard.map((entry, i) => `${i + 1}. ${entry.user} - ${entry.score}`).join("\n"));
+    leaderboardModal.style.display = "block";
+    const leaderboardEntries = document.querySelectorAll("#leaderboard-modal .lead-entry");
+    leaderboard.forEach((entry, i) => {
+    leaderboardEntries[i].textContent = `${entry.user} - ${entry.score}`;
+    });
+    leaderboardCloseBtn.onclick = function() { 
+      leaderboardModal.style.display = "none";
+    }
   }, 150);
+  document.addEventListener('keydown', spaceKeyHandler);
 }
 
 // sets the width and height of the world element
