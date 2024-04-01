@@ -65,7 +65,11 @@ const spaceKeyHandler = (e) => {
     handleStart();
   }
 };
-document.addEventListener("keydown", spaceKeyHandler);
+
+// wait for intro screen to finish before game can start
+setTimeout(function(){
+  document.addEventListener("keydown", spaceKeyHandler);}
+, 7150);
 
 let lastTime
 let speedScale
