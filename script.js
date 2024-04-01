@@ -58,6 +58,7 @@ let isGameStarted = false
 // adds space button to start
 const spaceKeyHandler = (e) => {
   if (e.keyCode === 32 && !isGameStarted) {
+    e.preventDefault();
     isGameStarted = true;
     handleStart();
   }

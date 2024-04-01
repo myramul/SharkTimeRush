@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'SharkTimeRush';
+  font-family: 'Minecrafter';
   src: url('fonts/Minecrafter/Minecrafter.Reg.ttf');
 }
 
@@ -10,7 +10,7 @@
 *, *::before, *::after {
   box-sizing: border-box;
   user-select: none;
-  font-family: 'SharkTimeRush';
+  font-family: 'Minecrafter';
   color: #ffda41;
   text-shadow: 2px 2px 3.5px darkorange;
 }
@@ -189,6 +189,7 @@ body {
   font-size: 25px;
   text-shadow: none;
   text-align: center;
+  width: 65%;
   height: 45px;
   border-radius: 10px;
   background-color: #d7f4ff;;
