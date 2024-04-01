@@ -253,7 +253,8 @@ body {
   color: #f4a261;
   text-shadow: 1px 1px 1.5px #ff4040;
   font-size: 27px;
-  font-family: 'Minecrafter', monospace;
-  text-align: left;
+  font-family: 'RetroComputer', monospace;
+  text-align: right;
   margin-bottom: 10px; 
+  align-self: flex-end;
 }
