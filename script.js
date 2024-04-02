@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 1500); 
 });
 
+
 const WORLD_WIDTH = 100
 const WORLD_HEIGHT = 30
 const SPEED_SCALE_INCREASE = 0.00001
@@ -43,6 +44,8 @@ const modalScore = document.getElementById("new-leaderboard-score");
 const menuButton = document.getElementById("menu-btn");
 const leaderboardModal = document.getElementById("leaderboard-modal");
 const leaderboardCloseBtn = document.getElementsByClassName("close")[1];
+const popupMenu = document.getElementById('popup-menu');
+
 let isPaused = false;
 function pauseGame() {
   cancelAnimationFrame(lastTime);
@@ -62,6 +65,8 @@ const spaceKeyHandler = (e) => {
   if (e.keyCode === 32 && !isGameStarted) {
     e.preventDefault();
     isGameStarted = true;
+    leaderboardModal.style.display = "none";
+    popupMenu.style.display = "none";
     handleStart();
   }
 };
@@ -112,10 +117,12 @@ menuButton.addEventListener("click", () => {
     isPaused = true;
     pauseGame();
     menuButton.textContent = "Resume";
+    popupMenu.style.display = "flex";
   } else {
     isPaused = false;
     resumeGame();
     menuButton.textContent = "Menu";
+    popupMenu.style.display = "none";
   }
 });
 
@@ -230,6 +237,23 @@ async function handleLose() {
     }
   }, 150);
 }
+
+document.getElementById('leaderboard-btn').addEventListener('click', () => {
+  leaderboardModal.style.display = "block";
+    const leaderboardEntries = document.querySelectorAll("#leaderboard-modal .lead-entry");
+    leaderboard.forEach((entry, i) => {
+    leaderboardEntries[i].textContent = `${entry.user} - ${entry.score}`;
+    });
+    leaderboardCloseBtn.onclick = function() { 
+      leaderboardModal.style.display = "none";
+    }
+  console.log("Leaderboard functionality not implemented yet.");
+});
+
+document.getElementById('help-btn').addEventListener('click', () => {
+  // Placeholder for help functionality
+  console.log("Help functionality not implemented yet.");
+});
 
 // sets the width and height of the world element
 function setPixelToWorldScale() {

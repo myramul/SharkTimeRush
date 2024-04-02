@@ -258,3 +258,57 @@ body {
   margin-bottom: 10px; 
   align-self: flex-end;
 }
+
+.popup-menu {
+  display: none; 
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #92CD41;
+  font-family: 'RetroComputer', monospace;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  width: 300px;
+  z-index: 2;
+}
+
+#leaderboard-btn {
+  background-color: #4336f4; 
+  margin-right: 190px;
+}
+
+#leaderboard-btn:hover {background-color: #0b0380}
+#leaderboard-btn:active {
+  background-color: #0b0380;
+  box-shadow: 0 1px #666;
+  transform: translateY(4px);
+}
+
+#wardrobe-btn {
+  background-color: #a12e81; 
+  margin-right: 40px;
+}
+
+#wardrobe-btn:hover {background-color: #7b115d}
+#wardrobe-btn:active {
+  background-color: #7b115d;
+  box-shadow: 0 1px #666;
+  transform: translateY(4px);
+}
+
+#help-btn {
+  background-color: #f44336;
+  margin-right: -60px;
+  margin-left: 20px;
+}
+
+#help-btn:hover {background-color: #d22115}
+#help-btn:active {
+  background-color: #d22115;
+  box-shadow: 0 1px #666;
+  transform: translateY(4px);
+}

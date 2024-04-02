@@ -26,11 +26,11 @@
     <div class="modal-content">
       <span class="close" style="align-self: flex-end;">&times;</span>
       <h2 class ="title-modal" style="color: #ffda41; text-shadow: 2px 2px 3.5px darkorange;">Leaderboard</h2>
-      <h1><span class="lead-number">1&nbsp;</span> <span class="lead-entry" id="lead-1">test 143</span></h1>
-      <h1><span class="lead-number">2&nbsp;</span> <span class="lead-entry" id="lead-2">tt 123</span></h1>
-      <h1><span class="lead-number">3&nbsp;</span> <span class="lead-entry" id="lead-3">testtt 113</span></h1>
-      <h1><span class="lead-number">4&nbsp;</span> <span class="lead-entry" id="lead-4">tesst 98</span></h1>
-      <h1><span class="lead-number">5&nbsp;</span> <span class="lead-entry" id="lead-5">test 23</span></h1>
+      <h1><span class="lead-number">1&nbsp;</span> <span class="lead-entry" id="lead-1"></span></h1>
+      <h1><span class="lead-number">2&nbsp;</span> <span class="lead-entry" id="lead-2"></span></h1>
+      <h1><span class="lead-number">3&nbsp;</span> <span class="lead-entry" id="lead-3"></span></h1>
+      <h1><span class="lead-number">4&nbsp;</span> <span class="lead-entry" id="lead-4"></span></h1>
+      <h1><span class="lead-number">5&nbsp;</span> <span class="lead-entry" id="lead-5"></span></h1>
     </div>
   </div>
   <div class="logo-screen" data-logo-screen>
@@ -49,7 +49,12 @@
     </div>
   </div>
   <div class="world" data-world>
-    <button class="menu-btn" id="menu-btn">MENU</button>
+    <button id="menu-btn" class="menu-btn">MENU</button>
+    <div id="popup-menu" class="popup-menu">
+      <button class="menu-btn" id="leaderboard-btn">Leaderboard</button>
+      <button class="menu-btn" id="wardrobe-btn">Wardrobe</button>
+      <button class="menu-btn" id="help-btn">Help</button>
+  </div>
     <div class = "high-score" data-high>HIGH: 0</div>
     <div class="score" data-score>0</div>
     <div class="start-screen" data-start-screen>
