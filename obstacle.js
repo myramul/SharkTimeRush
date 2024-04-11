@@ -61,7 +61,7 @@ function createObstacle() {
   } else {
     let isOpen = false;
     obstacle.style.top = "62%"; 
-    obstacle.style.height = "14%";
+    obstacle.style.height = "14.5%";
     setInterval(() => {
       if (isOpen) {
         obstacle.src = `${obstacleLvlFolders[currImgIdx]}/obstacle-sky-0.png`;
