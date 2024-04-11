@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const WORLD_WIDTH = 100
 const WORLD_HEIGHT = 30
 const SPEED_SCALE_INCREASE = 0.00001
+const LEADERBOARD_MAX_ENTRIES = 10
 
 const worldElem = document.querySelector("[data-world]")
 const scoreElem = document.querySelector("[data-score]")
@@ -54,6 +55,12 @@ function pauseGame() {
 function resumeGame() {
   lastTime = null;
   window.requestAnimationFrame(update);
+  if (!isGameStarted) {
+    isGameStarted = true;
+    leaderboardModal.style.display = "none";
+    popupMenu.style.display = "none";
+    handleStart();
+  }
 }
 
 setPixelToWorldScale()
@@ -112,19 +119,32 @@ function update(time) {
   window.requestAnimationFrame(update);
 }
 
-menuButton.addEventListener("click", () => {
+// Function to pause the game and toggle menu state
+function toggleMenu() {
   if (!isPaused) {
     isPaused = true;
     pauseGame();
     menuButton.textContent = "Resume";
     popupMenu.style.display = "flex";
+    startScreenElem.innerText = '';
   } else {
     isPaused = false;
     resumeGame();
     menuButton.textContent = "Menu";
     popupMenu.style.display = "none";
   }
-});
+}
+
+const menuKeyHandler = (e) => {
+  if (e.keyCode === 88) {
+    e.preventDefault();
+    toggleMenu();
+  }
+}
+
+// X key to pause/toggle menu and menu button does the same
+menuButton.addEventListener("click", toggleMenu);
+document.addEventListener("keydown", menuKeyHandler);
 
 
 function checkLose() {
@@ -157,7 +177,7 @@ function updateScore(delta) {
 function updateLeaderboard(sc, user){
   leaderboard.push({score: sc, user: user.toUpperCase()})
   leaderboard.sort((a,b) => b.score - a.score)
-  leaderboard = leaderboard.slice(0, 5) // only top 5 scores stored
+  leaderboard = leaderboard.slice(0, LEADERBOARD_MAX_ENTRIES)
   localStorage.setItem('leaderboard', JSON.stringify(leaderboard))
 }
 
@@ -184,7 +204,7 @@ async function handleLose() {
   setSharkLose()
   isGameStarted = false
   document.removeEventListener('keydown', spaceKeyHandler);
-
+  document.removeEventListener("keydown", menuKeyHandler);
   // displays game over screen depending on score
   if (score > currHighScore){
     startScreenElem.innerText = "game over \n NEW HIGH SCORE: " + Math.floor(score) + "\npress space to play again"
@@ -194,14 +214,14 @@ async function handleLose() {
   startScreenElem.classList.remove("hide")
 
   // if score is high enough to add to leaderboard, it adds it
-  if (leaderboard.length < 5|| score >= leaderboard[leaderboard.length - 1].score) {
+  if (leaderboard.length < LEADERBOARD_MAX_ENTRIES || score > leaderboard[leaderboard.length - 1].score) {
     modalScore.innerText = 'SCORE: ' + Math.floor(score);
     usernameEntryModal.style.display = "block";
 
-    // disables space bar from restarting the game while user is typing
-    // document.removeEventListener('keydown', spaceKeyHandler);
     modalCloseBtn.onclick = function() { 
       usernameEntryModal.style.display = "none";
+      document.addEventListener('keydown', spaceKeyHandler);
+      document.addEventListener("keydown", menuKeyHandler);
     }
     
     window.onclick = function(event) {
@@ -234,6 +254,7 @@ async function handleLose() {
     leaderboardCloseBtn.onclick = function() { 
       leaderboardModal.style.display = "none";
       document.addEventListener('keydown', spaceKeyHandler);
+      document.addEventListener("keydown", menuKeyHandler);
     }
   }, 150);
 }
@@ -247,13 +268,13 @@ document.getElementById('leaderboard-btn').addEventListener('click', () => {
     leaderboardCloseBtn.onclick = function() { 
       leaderboardModal.style.display = "none";
     }
-  console.log("Leaderboard functionality not implemented yet.");
 });
 
 document.getElementById('help-btn').addEventListener('click', () => {
   // Placeholder for help functionality
   console.log("Help functionality not implemented yet.");
 });
+
 
 // sets the width and height of the world element
 function setPixelToWorldScale() {

@@ -248,6 +248,8 @@ body {
   flex-direction: column;
   align-items: flex-start;
   width: fit-content;
+  height: 560px;
+  overflow-y: scroll;
 }
 
 .lead-entry {
