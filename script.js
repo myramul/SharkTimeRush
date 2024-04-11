@@ -48,6 +48,9 @@ const leaderboardCloseBtn = document.getElementsByClassName("close")[1];
 const popupMenu = document.getElementById('popup-menu');
 
 let isPaused = false;
+
+const bgImages = ['url(imgs/Backgrounds/bg1.gif)', 'url(imgs/Backgrounds/bg2.gif)', 'url(imgs/Backgrounds/bg3.gif)'];
+
 function pauseGame() {
   cancelAnimationFrame(lastTime);
 }
@@ -88,6 +91,7 @@ let speedScale
 let score
 let leaderboard
 let currHighScore = 0
+export let currImgIdx = 0
 
 // gets leaderboard from local storage and sets high score
 leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || []
@@ -171,6 +175,8 @@ function updateSpeedScale(delta) {
 function updateScore(delta) {
   score += delta * 0.01
   scoreElem.textContent = Math.floor(score)
+
+  updateBackgroundImage();
 }
 
 // takes a score and username and adds them to leaderboard
@@ -197,6 +203,8 @@ function handleStart() {
     currHighScore = leaderboard[0].score
     highScoreElem.innerText = `HIGH: ${currHighScore}`;
   } 
+
+  updateBackgroundImage();
 }
 
 // handles loss of game
@@ -287,4 +295,17 @@ function setPixelToWorldScale() {
 
   worldElem.style.width = `${WORLD_WIDTH * worldToPixelScale}px`
   worldElem.style.height = `${WORLD_HEIGHT * worldToPixelScale}px`
+}
+
+function updateBackgroundImage() {
+  if (currImgIdx === undefined) {
+    currImgIdx = Math.floor(score / 100); // Initialize currImgIdx based on score
+    document.body.style.backgroundImage = bgImages[currImgIdx];
+  }
+
+  // Check if the score has increased by a multiple of 100
+  if (Math.floor(score) % 100 === 0) {
+    currImgIdx = Math.floor(score / 100) % bgImages.length; // Update currImgIdx
+    document.body.style.backgroundImage = bgImages[currImgIdx];
+  }
 }

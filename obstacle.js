@@ -7,11 +7,13 @@ import {
   getCustomProperty,
 } from "./updateCustomProperty.js"
 
+import { currImgIdx } from "./script.js"
+
 const SPEED = 0.05
 const OBSTACLE_INTERVAL_MIN = 550 // min time between obstacles
 const OBSTACLE_INTERVAL_MAX = 2000 // max time between obstacles
 const worldElem = document.querySelector("[data-world]")
-
+const obstacleLvlFolders = ["imgs/Obstacles/Level1", "imgs/Obstacles/Level2", "imgs/Obstacles/Level3"]
 let nextObstacleTime
 export function setupObstacle() {
   nextObstacleTime = OBSTACLE_INTERVAL_MIN
@@ -52,7 +54,8 @@ function createObstacle() {
 
   // display ground or sky obstacle
   if (obstacleType === "ground") {
-    obstacle.src = "imgs/obstacle.png";
+    obstacle.src = `${obstacleLvlFolders[currImgIdx]}/obstacle.png`;
+    // obstacle.src = "imgs/Obstacles/Level1/obstacle.png";
     setCustomProperty(obstacle, "--top", 0);
     obstacle.style.height = "25%";
   } else {
@@ -61,9 +64,11 @@ function createObstacle() {
     obstacle.style.height = "15%";
     setInterval(() => {
       if (isOpen) {
-        obstacle.src = "imgs/obstacle-sky-0.png"; 
+        obstacle.src = `${obstacleLvlFolders[currImgIdx]}/obstacle-sky-0.png`;
+        // obstacle.src = "imgs/Obstacles/Level1/obstacle-sky-0.png"; 
       } else {
-        obstacle.src = "imgs/obstacle-sky-1.png";
+        obstacle.src = `${obstacleLvlFolders[currImgIdx]}/obstacle-sky-1.png`;
+        // obstacle.src = "imgs/Obstacles/Level1/obstacle-sky-1.png";
       }
       isOpen = !isOpen;
     }, 300); 

@@ -57,37 +57,37 @@ export function getSharkRect() {
 // sets the shark lose sprite depending on if ducking or running
 export function setSharkLose() {
   if (isDucking && isArrowDownPressed) {
-    sharkElem.src = "imgs/shark-duck-lose.png";
+    sharkElem.src = "imgs/Shark/shark-duck-lose.png";
     sharkElem.style.height = "20%";
     return;
   }
-  sharkElem.src = "imgs/shark-lose.png";
+  sharkElem.src = "imgs/Shark/shark-lose.png";
   sharkElem.style.height = "30%";
 }
 
 // handles the movement of the shark -- changes imgs according to if ducking or running or jumping
 function handleRun(delta, speedScale) {
   if (isJumping) {
-    sharkElem.src = `imgs/shark-stationary.png`;
+    sharkElem.src = `imgs/Shark/shark-stationary.png`;
     sharkElem.style.height = "30%";
     return;
   }
 
   if (isDucking && !isArrowDownPressed) {
-    sharkElem.src = `imgs/shark-run-${sharkFrame}.png`;
+    sharkElem.src = `imgs/Shark/shark-run-${sharkFrame}.png`;
     sharkElem.style.height = "30%";
     isDucking = false;
   }
 
   if (isDucking) {
-    sharkElem.src = `imgs/shark-duck-1.png`;
+    sharkElem.src = `imgs/Shark/shark-duck-1.png`;
     sharkElem.style.height = "20%";
     return;
   }
 
   if (currentFrameTime >= FRAME_TIME) {
     sharkFrame = (sharkFrame + 1) % SHARK_FRAME_COUNT;
-    sharkElem.src = `imgs/shark-run-${sharkFrame}.png`;
+    sharkElem.src = `imgs/Shark/shark-run-${sharkFrame}.png`;
     sharkElem.style.height = "30%";
     currentFrameTime -= FRAME_TIME;
   }
