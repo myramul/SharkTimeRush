@@ -39,7 +39,7 @@ export function setupShark() {
   yVelocity = 0
   isDucking = false
   isArrowDownPressed = false
-  sharkElem.style.height = "30%";
+  sharkElem.style.height = "25%";
   setCustomProperty(sharkElem, "--bottom", 0)
   document.removeEventListener("keydown", onMovement)
   document.addEventListener("keydown", onMovement)
@@ -58,37 +58,37 @@ export function getSharkRect() {
 export function setSharkLose() {
   if (isDucking && isArrowDownPressed) {
     sharkElem.src = "imgs/Shark/shark-duck-lose.png";
-    sharkElem.style.height = "20%";
+    sharkElem.style.height = "17%";
     return;
   }
   sharkElem.src = "imgs/Shark/shark-lose.png";
-  sharkElem.style.height = "30%";
+  sharkElem.style.height = "25%";
 }
 
 // handles the movement of the shark -- changes imgs according to if ducking or running or jumping
 function handleRun(delta, speedScale) {
   if (isJumping) {
     sharkElem.src = `imgs/Shark/shark-stationary.png`;
-    sharkElem.style.height = "30%";
+    sharkElem.style.height = "25%";
     return;
   }
 
   if (isDucking && !isArrowDownPressed) {
     sharkElem.src = `imgs/Shark/shark-run-${sharkFrame}.png`;
-    sharkElem.style.height = "30%";
+    sharkElem.style.height = "25%";
     isDucking = false;
   }
 
   if (isDucking) {
     sharkElem.src = `imgs/Shark/shark-duck-1.png`;
-    sharkElem.style.height = "20%";
+    sharkElem.style.height = "17%";
     return;
   }
 
   if (currentFrameTime >= FRAME_TIME) {
     sharkFrame = (sharkFrame + 1) % SHARK_FRAME_COUNT;
     sharkElem.src = `imgs/Shark/shark-run-${sharkFrame}.png`;
-    sharkElem.style.height = "30%";
+    sharkElem.style.height = "25%";
     currentFrameTime -= FRAME_TIME;
   }
   currentFrameTime += delta * speedScale;

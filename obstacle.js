@@ -57,11 +57,11 @@ function createObstacle() {
     obstacle.src = `${obstacleLvlFolders[currImgIdx]}/obstacle.png`;
     // obstacle.src = "imgs/Obstacles/Level1/obstacle.png";
     setCustomProperty(obstacle, "--top", 0);
-    obstacle.style.height = "25%";
+    obstacle.style.height = "20%";
   } else {
     let isOpen = false;
     obstacle.style.top = "62%"; 
-    obstacle.style.height = "15%";
+    obstacle.style.height = "14%";
     setInterval(() => {
       if (isOpen) {
         obstacle.src = `${obstacleLvlFolders[currImgIdx]}/obstacle-sky-0.png`;

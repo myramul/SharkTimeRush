@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 const WORLD_WIDTH = 100
-const WORLD_HEIGHT = 30
+const WORLD_HEIGHT = 40
 const SPEED_SCALE_INCREASE = 0.00001
 const LEADERBOARD_MAX_ENTRIES = 10
 
@@ -254,6 +254,8 @@ async function handleLose() {
   }
   
   setTimeout(function() {
+    // document.addEventListener('keydown', spaceKeyHandler);
+    // document.addEventListener("keydown", menuKeyHandler);
     leaderboardModal.style.display = "block";
     const leaderboardEntries = document.querySelectorAll("#leaderboard-modal .lead-entry");
     leaderboard.forEach((entry, i) => {
