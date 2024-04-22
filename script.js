@@ -311,3 +311,24 @@ function updateBackgroundImage() {
     document.body.style.backgroundImage = bgImages[currImgIdx];
   }
 }
+//
+
+// Get the help modal
+var helpModal = document.getElementById('help-modal');
+
+// Get the button that opens the help modal
+var helpBtn = document.getElementById('help-btn');
+
+// Get the <span> element that closes the help modal
+var closeHelp = document.querySelector('.helpclose'); // using querySelector for class
+
+// When the user clicks the help button, open the help modal
+helpBtn.onclick = function() {
+    helpModal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the help modal
+closeHelp.onclick = function() {
+    helpModal.style.display = "none";
+}
+
