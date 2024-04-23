@@ -9,6 +9,7 @@
   <link rel="icon" type="image/x-icon" href="imgs/Logos/icon.png">
   <script src="script.js" type="module"></script>
 </head>
+
 <body>
   <div id="username-entry-modal" class="modal">
     <div class="modal-content">
@@ -22,6 +23,7 @@
       </form>
     </div>
   </div>
+
   <div id="leaderboard-modal" class="modal">
     <div class="modal-content">
       <span class="close" style="align-self: flex-end;">&times;</span>
@@ -38,9 +40,11 @@
       <h1><span class="lead-number">10&nbsp;</span> <span class="lead-entry" id="lead-10"></span></h1>
     </div>
   </div>
+
   <div class="logo-screen" data-logo-screen>
     <img src="imgs/Logos/postgames.jpg" alt="CompanyLogo" class="company-logo">
   </div>
+
   <div class="credits-screen" data-credits-screen>
     <div class="credits">
       <h1 class="title-credits">Shark Time Rush</h1>
@@ -53,12 +57,14 @@
       <p>Ben Simens</p>
     </div>
   </div>
+
   <div class="world" data-world>
     <button id="menu-btn" class="menu-btn">MENU</button>
     <div id="popup-menu" class="popup-menu">
       <button class="menu-btn" id="leaderboard-btn">Leaderboard</button>
       <button class="menu-btn" id="wardrobe-btn">Wardrobe</button>
       <button class="menu-btn" id="help-btn">Help</button>
+      <button class="menu-btn" id="settings-btn">Settings</button>
   </div>
 
   <div id="help-modal" class="modal helpmodal" style="display: none;">
@@ -76,18 +82,42 @@
             </ul>
         </div>
     </div>
-</div>
+  </div>
 
-
-    <div class = "high-score" data-high>HIGH: 0</div>
-    <div class="score" data-score>0</div>
-    <div class="start-screen" data-start-screen>
-      SHARK TIME RUSH<br>press space to start<br>
-      <span style="font-size: 2.5vmin;">[SPACE]: JUMP &nbsp; [DOWN]: DUCK &nbsp; [X]: PAUSE/MENU</span>
+  <div id="settings-modal" class="modal">
+    <div class="modal-content">
+      <span class="settingsclose" style="align-self: right; text-align: right; float: right;">&times;</span>
+      <h2 class="settingstitle" style="align-self: center; text-align: center;" >Settings</h2>
+      <ul style="list-style-type: none;">
+        <li class="settingsinfo">
+          <h4 style="color: #f4a261; text-shadow: 2px 2px 3.5px #ff4040;">Mute  <input type="checkbox" id="mutecheck"></h4>
+    
+        </li>
+        <li class="settingsinfo">
+          <h4 style="color: #f4a261; text-shadow: 2px 2px 3.5px #ff4040;">Key Selection </h4>
+          <input type="radio" id="SpaceDown" name="keyselect" value="0" checked>
+            <label for="SpaceDown" style="font-family: 'RetroComputer', monospace; font-size: 12px; text-shadow: none; color: #ed7817;">[SPACE]: Jump  &nbsp;[DOWN]: Duck</label><br>
+            <input type="radio" id="WSAD" name="keyselect" value="1">
+            <label for="WSAD" style="font-family: 'RetroComputer', monospace; font-size: 12px; text-shadow: none; color: #ed7817;">[W]: Jump  &nbsp;[S]: Duck</label><br>
+        </li>
+        <li class="settingsinfo">
+          <h4 style="color: #f4a261; text-shadow: 2px 2px 3.5px #ff4040;">Hide UI Elements <input type="checkbox" id="hidecheck"></h4>
+          
+        </li>
+      </ul>
     </div>
+  </div>
+
+  <div class = "high-score" data-high>HIGH: 0</div>
+  <div class="score" data-score>0</div>
+  <div class="start-screen" data-start-screen>
+    SHARK TIME RUSH<br>press space to start<br>
+    <span style="font-size: 2.5vmin;">[SPACE]: JUMP &nbsp; [DOWN]: DUCK &nbsp; [X]: PAUSE/MENU</span>
+  </div>
     <img src="imgs/Ground/ground.png" class="ground" data-ground>
     <img src="imgs/Ground/ground.png" class="ground" data-ground>
     <img src="imgs/Shark/shark-stationary.png" class="shark" data-shark>
   </div>
+
 </body>
 </html>

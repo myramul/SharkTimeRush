@@ -7,6 +7,8 @@ import {
   getCustomProperty,
 } from "./updateCustomProperty.js"
 
+import {keySelection} from "./script.js"
+
 const sharkElem = document.querySelector("[data-shark]")
 const JUMP_SPEED = 0.45
 const GRAVITY = 0.0015
@@ -116,7 +118,7 @@ function onMovement(e) {
     isDucking = false;
   }
 
-  if (e.code === "Space" && !isJumping && !isDucking) {
+  if ((keySelection === 0 && e.code === "Space" && !isJumping && !isDucking) || (keySelection === 1 && e.keyCode === 87 && !isJumping && !isDucking)){
     e.preventDefault();
     yVelocity = JUMP_SPEED;
     isJumping = true;

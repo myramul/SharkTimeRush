@@ -148,9 +148,9 @@ body {
   box-shadow: 0 2px #999;
 }
 
-.menu-btn:hover {background-color: #74a434}
+.menu-btn:hover {background-color: #75be0f}
 .menu-btn:active {
-  background-color: #74a434;
+  background-color: #75be0f;
   box-shadow: 0 1px #666;
   transform: translateY(4px);
 }
@@ -164,7 +164,6 @@ body {
   width: 100%; 
   height: 100%;
   overflow: hidden; 
-  background-color: rgba(0,0,0,0.4);
 }
 
 .modal-content {
@@ -239,6 +238,21 @@ body {
   cursor: pointer;
 }
 
+.settingsclose {
+  color: #aaa;
+  float: right;
+  font-size: 23px;
+  font-weight: bold;
+  text-shadow: none;
+}
+
+.settingsclose:hover,
+.settingsclose:focus {
+  color: rgb(203, 7, 7);
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .username-entry-modal {
   display: none;
 }
@@ -284,9 +298,9 @@ body {
   margin-right: 190px;
 }
 
-#leaderboard-btn:hover {background-color: #0b0380}
+#leaderboard-btn:hover {background-color: #2f21f2}
 #leaderboard-btn:active {
-  background-color: #0b0380;
+  background-color: #2f21f2;
   box-shadow: 0 1px #666;
   transform: translateY(4px);
 }
@@ -316,69 +330,81 @@ body {
   transform: translateY(4px);
 }
 
+#settings-btn {
+  background-color: #f4a261;
+  margin-right: -200px;
+}
+
+#settings-btn:hover {background-color: #e5781f}
+#settings-btn:active {
+  background-color: #e5781f;
+  box-shadow: 0 1px #666;
+  transform: translateY(4px);
+}
+
 .helpmodal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
+  display: none; 
+  position: fixed; 
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%; 
+  height: 100%; 
+  background-color: rgba(0,0,0,0.4); 
   z-index: 1000;
 }
 
 .helptitle {
-  color: #000000; /* Deep, rich blue for text */
+  color: #000000; 
   font-size: 25px;
   font-family: 'RetroComputer', monospace;
-  padding: 5px 0; /* Padding above and below the text */
-  margin: 10px 0; /* Space around text for better layout */
-  display: block; /* Ensures it takes up full width for block level behavior */
-  text-align: center; /* Centers the text horizontally within its container */
+  padding: 5px 0; 
+  margin: 10px 0; 
+  display: block; 
+  text-align: center;
 }
 .helptitle2 {
-  color: #4055b5; /* Deep, rich blue for text */
+  color: #4055b5;
   font-size: 20px;
   font-family: 'RetroComputer', monospace;
-  padding: 5px 0; /* Padding above and below the text */
-  margin: 10px 0; /* Space around text for better layout */
-  display: block; /* Ensures it takes up full width for block level behavior */
-  text-align: center; /* Centers the text horizontally within its container */
+  padding: 5px 0; 
+  margin: 10px 0; 
+  display: block; 
+  text-align: center; 
 }
 
 .helpinfo1 {
-  color: #ffffff; /* Deep, rich blue for text */
+  color: #ffffff; 
   font-size: 20px;
   font-family: 'RetroComputer', monospace;
-  padding: 5px 0; /* Padding above and below the text */
-  margin: 10px 0; /* Space around text for better layout */
-  display: block; /* Ensures it takes up full width for block level behavior */
+  padding: 5px 0; 
+  margin: 10px 0; 
+  display: block; 
   text-align: center;
 }
 .helpinfo2 {
-  color: #ffffff; /* Deep, rich blue for text */
+  color: #ffffff; 
   font-size: 20px;
   font-family: 'RetroComputer', monospace;
-  padding: 5px 0; /* Padding above and below the text */
-  margin: 10px 0; /* Space around text for better layout */
-  display: block; /* Ensures it takes up full width for block level behavior */
+  padding: 5px 0; 
+  margin: 10px 0; 
+  display: block; 
   text-align: center;
 }
 
 
 .helpmodal-content {
-  position: absolute; /* Absolute positioning relative to the parent */
-  top: 50%; /* Center vertically */
-  left: 50%; /* Center horizontally */
-  transform: translate(-50%, -50%); /* Shift the element to the left and up by half of its own width and height */
+  position: absolute;
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%);
   background-color: #fd5b5b;
   padding: 20px;
   border: 1px solid #888;
-  width: auto; /* Width based on content */
-  max-width: 50%; /* Maximum width to prevent overly wide modals */
-  min-width: 300px; /* Minimum width to maintain usability */
+  width: auto; 
+  max-width: 50%; 
+  min-width: 300px; 
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-  box-sizing: border-box; /* Include padding and border in the width and height calculations */
+  box-sizing: border-box;
 }
 
 .helpclose {
@@ -395,4 +421,13 @@ body {
 .helpclose:focus {
   color: black;
   text-decoration: none; 
+}
+
+#settings-modal {
+  display: none; 
+  text-align: left;
+  .modal-content{
+    overflow-y: scroll;
+    text-align: left;
+  }
 }

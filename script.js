@@ -46,8 +46,20 @@ const menuButton = document.getElementById("menu-btn");
 const leaderboardModal = document.getElementById("leaderboard-modal");
 const leaderboardCloseBtn = document.getElementsByClassName("close")[1];
 const popupMenu = document.getElementById('popup-menu');
+const helpModal = document.getElementById('help-modal');
+const closeHelp = document.querySelector('.helpclose');
+const settingsBtn = document.getElementById('settings-btn');
+const settingsModal = document.getElementById('settings-modal');
+const closeSettings = document.querySelector('.settingsclose');
+const muteCheckbox = document.getElementById("mutecheck");
+const spaceDownRadio = document.getElementById("SpaceDown");
+const WSADRadio = document.getElementById("WSAD");
+const hideCheckbox = document.getElementById("hidecheck");
 
 let isPaused = false;
+export let keySelection = 0;
+let muteSounds = false;
+let hideUI = false;
 
 const bgImages = ['url(imgs/Backgrounds/bg1.gif)', 'url(imgs/Backgrounds/bg2.gif)', 'url(imgs/Backgrounds/bg3.gif)'];
 
@@ -62,6 +74,12 @@ function resumeGame() {
     isGameStarted = true;
     leaderboardModal.style.display = "none";
     popupMenu.style.display = "none";
+    leaderboardModal.style.display = "none";
+    popupMenu.style.display = "none";
+    usernameEntryModal.style.display = "none";
+    helpModal.style.display = "none";
+    startScreenElem.classList.add("hide");
+    settingsModal.style.display = "none";
     handleStart();
   }
 }
@@ -77,14 +95,38 @@ const spaceKeyHandler = (e) => {
     isGameStarted = true;
     leaderboardModal.style.display = "none";
     popupMenu.style.display = "none";
+    usernameEntryModal.style.display = "none";
+    helpModal.style.display = "none";
+    startScreenElem.classList.add("hide");
+    settingsModal.style.display = "none";
     handleStart();
   }
 };
 
+const WSADKeyHandler = (e) => {
+  if (e.keyCode === 87 && !isGameStarted) {
+    e.preventDefault();
+    isGameStarted = true;
+    leaderboardModal.style.display = "none";
+    popupMenu.style.display = "none";
+    usernameEntryModal.style.display = "none";
+    helpModal.style.display = "none";
+    startScreenElem.classList.add("hide");
+    settingsModal.style.display = "none";
+    handleStart();
+  }
+  if (e.keyCode === 32){
+    e.preventDefault();
+  }
+}
+
 // wait for intro screen to finish before game can start
 setTimeout(function(){
-  document.addEventListener("keydown", spaceKeyHandler);}
-, 7150);
+  if (keySelection === 0) {
+    document.addEventListener("keydown", spaceKeyHandler);
+  } else if (keySelection === 1) {
+    document.addEventListener("keydown", WSADKeyHandler);
+  }},7150);
 
 let lastTime
 let speedScale
@@ -211,7 +253,11 @@ function handleStart() {
 async function handleLose() {
   setSharkLose()
   isGameStarted = false
-  document.removeEventListener('keydown', spaceKeyHandler);
+  if (keySelection === 0) {
+    document.removeEventListener("keydown", spaceKeyHandler);
+  } else if (keySelection === 1) {
+    document.removeEventListener("keydown", WSADKeyHandler);
+  }
   document.removeEventListener("keydown", menuKeyHandler);
   // displays game over screen depending on score
   if (score > currHighScore){
@@ -228,7 +274,11 @@ async function handleLose() {
 
     modalCloseBtn.onclick = function() { 
       usernameEntryModal.style.display = "none";
-      document.addEventListener('keydown', spaceKeyHandler);
+      if (keySelection === 0) {
+        document.addEventListener("keydown", spaceKeyHandler);
+      } else if (keySelection === 1) {
+        document.addEventListener("keydown", WSADKeyHandler);
+      }
       document.addEventListener("keydown", menuKeyHandler);
     }
     
@@ -254,8 +304,6 @@ async function handleLose() {
   }
   
   setTimeout(function() {
-    // document.addEventListener('keydown', spaceKeyHandler);
-    // document.addEventListener("keydown", menuKeyHandler);
     leaderboardModal.style.display = "block";
     const leaderboardEntries = document.querySelectorAll("#leaderboard-modal .lead-entry");
     leaderboard.forEach((entry, i) => {
@@ -263,7 +311,11 @@ async function handleLose() {
     });
     leaderboardCloseBtn.onclick = function() { 
       leaderboardModal.style.display = "none";
-      document.addEventListener('keydown', spaceKeyHandler);
+      if (keySelection === 0) {
+        document.addEventListener("keydown", spaceKeyHandler);
+      } else if (keySelection === 1) {
+        document.addEventListener("keydown", WSADKeyHandler);
+      }
       document.addEventListener("keydown", menuKeyHandler);
     }
   }, 150);
@@ -281,10 +333,44 @@ document.getElementById('leaderboard-btn').addEventListener('click', () => {
 });
 
 document.getElementById('help-btn').addEventListener('click', () => {
-  // Placeholder for help functionality
-  console.log("Help functionality not implemented yet.");
+  helpModal.style.display = "block";
+  closeHelp.onclick = function() {
+    helpModal.style.display = "none";
+}
 });
 
+settingsBtn.addEventListener('click', () => {
+  settingsModal.style.display = "block";
+  closeSettings.onclick = function() {
+    settingsModal.style.display = "none";
+  }
+  muteCheckbox.addEventListener("change", () => {
+    muteSounds = muteCheckbox.checked;
+  });
+  
+  spaceDownRadio.addEventListener("change", () => {
+    keySelection = 0;
+    document.removeEventListener("keydown", WSADKeyHandler);
+    document.addEventListener("keydown", spaceKeyHandler);
+  });
+  
+  WSADRadio.addEventListener("change", () => {
+    keySelection = 1;
+    document.removeEventListener("keydown", spaceKeyHandler);
+    document.addEventListener("keydown", WSADKeyHandler);
+  });
+  
+  hideCheckbox.addEventListener("change", () => {
+    hideUI = hideCheckbox.checked;
+    if (hideUI) {
+      scoreElem.style.display = "none";
+      highScoreElem.style.display = "none";
+    } else {
+      scoreElem.style.display = "block";
+      highScoreElem.style.display = "block";
+    }
+  });
+});
 
 // sets the width and height of the world element
 function setPixelToWorldScale() {
@@ -311,24 +397,3 @@ function updateBackgroundImage() {
     document.body.style.backgroundImage = bgImages[currImgIdx];
   }
 }
-//
-
-// Get the help modal
-var helpModal = document.getElementById('help-modal');
-
-// Get the button that opens the help modal
-var helpBtn = document.getElementById('help-btn');
-
-// Get the <span> element that closes the help modal
-var closeHelp = document.querySelector('.helpclose'); // using querySelector for class
-
-// When the user clicks the help button, open the help modal
-helpBtn.onclick = function() {
-    helpModal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the help modal
-closeHelp.onclick = function() {
-    helpModal.style.display = "none";
-}
-
