@@ -53,7 +53,6 @@ const closeHelp = document.querySelector('.helpclose');
 const settingsBtn = document.getElementById('settings-btn');
 const settingsModal = document.getElementById('settings-modal');
 const closeSettings = document.querySelector('.settingsclose');
-const muteCheckbox = document.getElementById("mutecheck");
 const spaceDownRadio = document.getElementById("SpaceDown");
 const WSADRadio = document.getElementById("WSAD");
 const hideCheckbox = document.getElementById("hidecheck");
@@ -278,12 +277,11 @@ function handleStart() {
 
 // handles loss of game
 async function handleLose() {
+  isGameStarted = false
   setSharkLose()
   if (!soundsMuted){
     backgroundMusic.pause();
   }
-
-  isGameStarted = false
   if (keySelection === 0) {
     document.removeEventListener("keydown", spaceKeyHandler);
   } else if (keySelection === 1) {
@@ -309,7 +307,9 @@ async function handleLose() {
   // if score is high enough to add to leaderboard, it adds it
   if (leaderboard.length < LEADERBOARD_MAX_ENTRIES || score > leaderboard[leaderboard.length - 1].score) {
     modalScore.innerText = 'SCORE: ' + Math.floor(score);
-    usernameEntryModal.style.display = "block";
+    if (!isGameStarted){
+      usernameEntryModal.style.display = "block";
+    }
 
     modalCloseBtn.onclick = function() { 
       usernameEntryModal.style.display = "none";
@@ -320,12 +320,7 @@ async function handleLose() {
       }
       document.addEventListener("keydown", menuKeyHandler);
     }
-    
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        usernameEntryModal.style.display = "none";
-      }
-    }
+  
     // makes rest of function wait for user to finish typing username
      await new Promise((resolve, reject) => {
       usernameForm.addEventListener("submit", function(event) {
