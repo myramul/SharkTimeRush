@@ -71,13 +71,13 @@ export function setSharkLose() {
 function handleRun(delta, speedScale) {
   if (isJumping) {
     sharkElem.src = `imgs/Shark/shark-stationary.png`;
-    sharkElem.style.height = "25%";
+    sharkElem.style.height = "30%";
     return;
   }
 
   if (isDucking && !isArrowDownPressed) {
     sharkElem.src = `imgs/Shark/shark-run-${sharkFrame}.png`;
-    sharkElem.style.height = "25%";
+    sharkElem.style.height = "30%";
     isDucking = false;
   }
 
@@ -90,7 +90,7 @@ function handleRun(delta, speedScale) {
   if (currentFrameTime >= FRAME_TIME) {
     sharkFrame = (sharkFrame + 1) % SHARK_FRAME_COUNT;
     sharkElem.src = `imgs/Shark/shark-run-${sharkFrame}.png`;
-    sharkElem.style.height = "25%";
+    sharkElem.style.height = "30%";
     currentFrameTime -= FRAME_TIME;
   }
   currentFrameTime += delta * speedScale;
