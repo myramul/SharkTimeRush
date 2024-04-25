@@ -162,9 +162,15 @@ function toggleMenu() {
 }
 
 const menuKeyHandler = (e) => {
-  if (e.keyCode === 88) {
+  if (e.keyCode === 88) { // Check if 'X' key was pressed
     e.preventDefault();
-    toggleMenu();
+    // Check if any modals are currently visible
+    if (!leaderboardModal.style.display.includes('block') && 
+        !usernameEntryModal.style.display.includes('block') && 
+        !helpModal.style.display.includes('block') && 
+        !settingsModal.style.display.includes('block')) {
+      toggleMenu(); // Toggle menu only if no modals are displayed
+    }
   }
 }
 
