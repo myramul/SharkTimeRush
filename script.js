@@ -7,6 +7,7 @@ import { updateShark, setupShark, getSharkRect, setSharkLose } from "./shark.js"
 import { updateObstacle, setupObstacle, getObstacleRects } from "./obstacle.js"
 
 // intro screen
+
 document.addEventListener("DOMContentLoaded", () => {
   const logoScreenElem = document.querySelector("[data-logo-screen]");
   const creditsScreenElem = document.querySelector("[data-credits-screen]");
@@ -28,28 +29,52 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1500);
   }, 1500); 
 });
-
 document.addEventListener('DOMContentLoaded', () => {
   const jumpSound = document.getElementById('jumpSound');
   const duckSound = document.getElementById('duckSound');
-  const loseSound = document.getElementById('loseSound');  
+  const loseSound = document.getElementById('loseSound');
+  const backgroundMusic = document.getElementById('backgroundMusic');
+  let gameStarted = false; // To ensure music plays only once
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'W' || event.key === ' ') { // Handles both 'W' and spacebar for jump
+    // Handles both 'w' (lowercase must be checked due to your check) and spacebar for jump
+    if (event.key === 'w' || event.key === ' ') {
       playSound(jumpSound);
-    } else if (event.key === 'S' || event.key === 'ArrowDown') { // Handles both 'S' and down arrow for duck
+    }
+    // Handles both 's' (lowercase) and 'ArrowDown' for duck
+    else if (event.key === 's' || event.key === 'ArrowDown') {
       playSound(duckSound);
-    } 
+    }
+    // Start the background music and the game with the first press of the space bar
+    if (event.code === 'Space' && !gameStarted) {
+      gameStarted = true;
+      playMusic(backgroundMusic);
+      startGame();
+    }
   });
 });
 
+// Function to play any sound, manages if the sound is paused or already playing
 function playSound(sound) {
   if (sound.paused) {
-    sound.play();
+    sound.play().catch(error => console.error('Error playing sound:', error));
   } else {
-    sound.currentTime = 0;  // Rewind to the start
-    sound.play();
+    sound.currentTime = 0; // Rewind to the start
+    sound.play().catch(error => console.error('Error playing sound:', error));
   }
+}
+
+// Function to play music, specifically ensuring that the promise is caught if it rejects
+function playMusic(music) {
+  music.play().catch(error => {
+    console.error("Error playing music. User interaction required to start audio:", error);
+
+  });
+}
+
+function startGame() {
+  console.log("Game started");
+
 }
 
 
