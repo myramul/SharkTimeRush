@@ -22,8 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
         worldElem.classList.add("grow");
         setTimeout(() => {
           startScreenElem.classList.remove("hide");
-        }, 2000);
-      }, 2000);
+        }, 2300);
+      }, 2300);
     }, 1500);
   }, 1500); 
 });

@@ -444,3 +444,12 @@ body {
   text-shadow: 1px 1px 2.5px #4f80bc;
   font-size: 30px;
 }
+
+input[type=checkbox] {
+  cursor: pointer;
+  width: 2vmin;
+  height: 2vmin;
+}
+input[type=radio] {
+  cursor: pointer;
+}
