@@ -27,19 +27,6 @@
   Your browser does not support the audio tag.
 </audio>
 
-<button onclick="toggleMusic()">🔊/🔇 Toggle Music</button>
-
-<script>
-function toggleMusic() {
-    const music = document.getElementById('backgroundMusic');
-    if (music.paused) {
-        music.play();
-    } else {
-        music.pause();
-    }
-}
-</script>
-
 <body>
   <div id="username-entry-modal" class="modal">
     <div class="modal-content">
@@ -118,6 +105,29 @@ function toggleMusic() {
     </div>
   </div>
 
+  <div id="wardrobe-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Choose Your Shark</h2>
+      <form>
+        <label>
+          <input type="radio" name="shark" value="normal" checked> Normal Shark
+        </label>
+        <br>
+        <label>
+          <input type="radio" name="shark" value="fancy"> Fancy Shark
+        </label>
+        <br>
+        <label>
+          <input type="radio" name="shark" value="beanie"> Beanie Shark
+        </label>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Trigger/Open The Modal -->
+
+
   <div id="settings-modal" class="modal">
     <div class="modal-content" style="background-color: #fefefe;;">
       <span class="settingsclose" style="align-self: right; text-align: right; float: right;">&times;</span>
@@ -131,8 +141,19 @@ function toggleMusic() {
             <label for="WSAD" style="font-family: 'RetroComputer', monospace; font-size: 16px; text-shadow: none; color: #fd7c6e;">[W]: Jump  &nbsp;[S]: Duck</label><br>
         </li>
         <li class="settingsinfo">
-          <h4 style="font-family: 'RetroComputer', monospace; color: #2f62a2; text-shadow: 0.5px 0.5px 1.5px #4f80bc; font-size: 22px;">Mute  <input type="checkbox" id="mutecheck"></h4>
+          <h4 style="font-family: 'RetroComputer', monospace; color: #2f62a2; text-shadow: 0.5px 0.5px 1.5px #4f80bc; font-size: 22px;">Sounds </h4>
         </li>
+        <button onclick="toggleMusic()">🔊/🔇 Toggle Music</button>
+        <script>
+          function toggleMusic() {
+              const music = document.getElementById('backgroundMusic');
+              if (music.paused) {
+                  music.play();
+              } else {
+                  music.pause();
+              }
+          }
+          </script>
         <li class="settingsinfo">
           <h4 style="font-family: 'RetroComputer', monospace; color: #2f62a2; text-shadow: 0.5px 0.5px 1.5px #4f80bc; font-size: 22px;">Hide UI Elements <input type="checkbox" id="hidecheck"></h4>
         </li>

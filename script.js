@@ -110,7 +110,7 @@ export let keySelection = 0;
 let muteSounds = false;
 let hideUI = false;
 
-const bgImages = ['url(imgs/Backgrounds/bg1.gif)', 'url(imgs/Backgrounds/bg2.gif)', 'url(imgs/Backgrounds/bg3.gif)'];
+const bgImages = ['url(imgs/Backgrounds/bg1.gif)', 'url(imgs/Backgrounds/bg2.gif)', 'url(imgs/Backgrounds/bg3.gif)','url(imgs/Backgrounds/bg4.gif)','url(imgs/Backgrounds/bg5.gif)'];
 
 function pauseGame() {
   cancelAnimationFrame(lastTime);
@@ -451,15 +451,52 @@ function setPixelToWorldScale() {
   worldElem.style.height = `${WORLD_HEIGHT * worldToPixelScale}px`
 }
 
-function updateBackgroundImage() {
-  if (currImgIdx === undefined) {
-    currImgIdx = Math.floor(score / 100); // Initialize currImgIdx based on score
-    document.body.style.backgroundImage = bgImages[currImgIdx];
-  }
+const bgimages = [
+  'url(imgs/Backgrounds/bg1.gif)',
+  'url(imgs/Backgrounds/bg2.gif)',
+  'url(imgs/Backgrounds/bg3.gif)',
+  'url(imgs/Backgrounds/bg4.gif)',
+  'url(imgs/Backgrounds/bg5.gif)'
+];
 
-  // Check if the score has increased by a multiple of 100
-  if (Math.floor(score) % 100 === 0) {
-    currImgIdx = Math.floor(score / 100) % bgImages.length; // Update currImgIdx
+function updateBackgroundImage() {
+  let newIdx = Math.floor(score / 150); // Change 150
+  if (newIdx !== currImgIdx) {
+    currImgIdx = newIdx % bgImages.length; //loop for the available backgrounds
     document.body.style.backgroundImage = bgImages[currImgIdx];
   }
 }
+// Get the modal
+var wardrobeModal = document.getElementById('wardrobe-modal');
+
+var wardrobeBtn = document.getElementById('wardrobe-btn');
+
+var close = document.querySelector("#wardrobe-modal .close");
+wardrobeBtn.onclick = function() {
+  wardrobeModal.style.display = "block";
+}
+close.onclick = function() {
+  wardrobeModal.style.display = "none";
+}
+window.onclick = function(event) {
+  if (event.target == wardrobeModal) {
+    wardrobeModal.style.display = "none";
+  }
+}
+//shark selection
+document.querySelectorAll('input[name="shark"]').forEach(input => {
+  input.addEventListener('change', function() {
+    switch (this.value) {
+      case 'normal':
+        console.log('Normal Shark selected');
+        break;
+      case 'fancy':
+        console.log('Fancy Shark selected');
+        break;
+      case 'beanie':
+        console.log('Beanie Shark selected');
+        break;
+    }
+  });
+});
+
