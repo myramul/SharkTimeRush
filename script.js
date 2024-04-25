@@ -122,6 +122,11 @@ if (leaderboard.length > 0) {
   highScoreElem.innerText = `HIGH: ${currHighScore}`;
 } 
 
+if (keySelection === 0) {
+  startScreenElem.innerHTML = `SHARK TIME RUSH<br>press space to start<br><span style="font-size: 2.5vmin;">[SPACE]: JUMP &nbsp; [DOWN]: DUCK &nbsp; [X]: PAUSE/MENU</span>`;
+}else{
+  startScreenElem.innerHTML = `SHARK TIME RUSH<br>press W key to start<br><span style="font-size: 2.5vmin;">[W]: JUMP &nbsp; [S]: DUCK &nbsp; [X]: PAUSE/MENU</span>`;
+}
 // updates game elements based on time passed since last update. 
 function update(time) {
   if (!isPaused) {
@@ -252,9 +257,17 @@ async function handleLose() {
   document.removeEventListener("keydown", menuKeyHandler);
   // displays game over screen depending on score
   if (score > currHighScore){
-    startScreenElem.innerText = "game over \n NEW HIGH SCORE: " + Math.floor(score) + "\npress space to play again"
+    if (keySelection === 0) {
+      startScreenElem.innerText = "game over \n NEW HIGH SCORE: " + Math.floor(score) + "\npress space to play again"
+    }else{
+      startScreenElem.innerText = "game over \n NEW HIGH SCORE: " + Math.floor(score) + "\npress W to play again"
+    }
   }else{
-    startScreenElem.innerText = "game over \n SCORE: " + Math.floor(score) + "  HIGH: " + currHighScore + "\npress space to play again"
+    if (keySelection === 0) {
+      startScreenElem.innerText = "game over \n SCORE: " + Math.floor(score) + "  HIGH: " + currHighScore + "\npress space to play again"
+    }else{
+      startScreenElem.innerText = "game over \n SCORE: " + Math.floor(score) + "  HIGH: " + currHighScore + "\npress W to play again"
+    }
   }
   startScreenElem.classList.remove("hide")
 

@@ -24,13 +24,13 @@ let isArrowDownPressed
 
 
 document.addEventListener("keydown", (e) => {
-  if (e.code === "ArrowDown") {
+  if ((keySelection === 0 && e.code === "ArrowDown") || (keySelection === 1 && e.keyCode === 83)) {
     isArrowDownPressed = true
   }
 });
 
 document.addEventListener("keyup", (e) => {
-  if (e.code === "ArrowDown") {
+  if ((keySelection === 0 && e.code === "ArrowDown") || (keySelection === 1 && e.keyCode === 83)){
     isArrowDownPressed = false
   }
 });
@@ -112,9 +112,9 @@ function handleJump(delta) {
 
 // handles controls for the shark -- jumping and ducking -- space or arrow down
 function onMovement(e) {
-  if (e.code === "ArrowDown" && e.type === "keydown") {
+  if ((keySelection === 0 && e.code === "ArrowDown" && e.type === "keydown") || (keySelection === 1 && e.keyCode === 83 && e.type === "keydown")) {
     isDucking = true;
-  } else if (e.code === "ArrowDown" && e.type === "keyup") {
+  } else if ((keySelection === 0 && e.code === "ArrowDown" && e.type === "keyup") || (keySelection === 1 && e.keyCode === 83 && e.type === "keyup")) {
     isDucking = false;
   }
 
