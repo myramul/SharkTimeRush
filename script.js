@@ -61,7 +61,7 @@ const backgroundMusic = document.getElementById('backgroundMusic');
 const soundBtn = document.getElementById('sound-btn');
 const wardrobeModal = document.getElementById('wardrobe-modal');
 
-let isPaused = false;
+export let isPaused = false;
 export let keySelection = 0;
 export let sharkSelectionIdx = 0;
 let hideUI = false;
@@ -439,14 +439,6 @@ function setPixelToWorldScale() {
   worldElem.style.width = `${WORLD_WIDTH * worldToPixelScale}px`
   worldElem.style.height = `${WORLD_HEIGHT * worldToPixelScale}px`
 }
-
-const bgimages = [
-  'url(imgs/Backgrounds/bg1.gif)',
-  'url(imgs/Backgrounds/bg2.gif)',
-  'url(imgs/Backgrounds/bg3.gif)',
-  'url(imgs/Backgrounds/bg4.gif)',
-  'url(imgs/Backgrounds/bg5.gif)'
-];
 
 function updateBackgroundImage() {
   let newIdx = Math.floor(score / 150); // Change 150
