@@ -66,6 +66,7 @@ export let keySelection = 0;
 export let sharkSelectionIdx = 0;
 let levelForMsg = 1;
 let hideUI = false;
+export let soundsMuted = false;
 
 const bgImages = ['url(imgs/Backgrounds/bg1.gif)', 'url(imgs/Backgrounds/bg2.gif)', 'url(imgs/Backgrounds/bg3.gif)','url(imgs/Backgrounds/bg4.gif)','url(imgs/Backgrounds/bg5.gif)'];
 
@@ -81,7 +82,9 @@ document.addEventListener("keydown", (e) => {
 })
 
 function resumeGame() {
-  backgroundMusic.play();
+  if (!soundsMuted){
+    backgroundMusic.play();
+  }
   lastTime = null;
   window.requestAnimationFrame(update);
   if (!isGameStarted) {
@@ -249,6 +252,7 @@ function handleStart() {
   lastTime = null
   speedScale = 1
   score = 0
+  levelForMsg = 1
   leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || []
   setupGround()
   setupShark()
@@ -267,13 +271,17 @@ function handleStart() {
   } 
 
   updateBackgroundImage();
-  backgroundMusic.play();
+  if (!soundsMuted){
+    backgroundMusic.play();
+  }
 }
 
 // handles loss of game
 async function handleLose() {
   setSharkLose()
-  backgroundMusic.pause();
+  if (!soundsMuted){
+    backgroundMusic.pause();
+  }
 
   isGameStarted = false
   if (keySelection === 0) {
@@ -419,13 +427,14 @@ settingsBtn.addEventListener('click', () => {
   });
 
   soundBtn.addEventListener("click", () => {
-    if (backgroundMusic.paused) {
-      backgroundMusic.play();
-    } else {
-      backgroundMusic.pause();
+    if (soundsMuted){
+      soundBtn.innerText = "Sound: On";
+      soundsMuted = false;
+    }else{
+      soundBtn.innerText = "Sound: Off";
+      soundsMuted = true;
     }
   });
-
 });
 
 // sets the width and height of the world element

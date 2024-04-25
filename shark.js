@@ -7,7 +7,7 @@ import {
   getCustomProperty,
 } from "./updateCustomProperty.js"
 
-import { keySelection, sharkSelectionIdx, isPaused } from "./script.js"
+import { keySelection, sharkSelectionIdx, isPaused, soundsMuted } from "./script.js"
 
 const sharkElem = document.querySelector("[data-shark]")
 const JUMP_SPEED = 0.45
@@ -27,12 +27,12 @@ const SharkSelectionImgs = [
 
 function playSound(sound) {
   if (sound.paused) {
-    if (!isPaused){
+    if (!isPaused && !soundsMuted){
       sound.play().catch(error => console.error('Error playing sound:', error));
     }
   } else {
     sound.currentTime = 0; 
-    if (!isPaused){
+    if (!isPaused && !soundsMuted){
       sound.play().catch(error => console.error('Error playing sound:', error));
     }
   }
