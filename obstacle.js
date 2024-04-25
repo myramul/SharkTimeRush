@@ -55,7 +55,6 @@ function createObstacle() {
   // display ground or sky obstacle
   if (obstacleType === "ground") {
     obstacle.src = `${obstacleLvlFolders[currImgIdx]}/obstacle.png`;
-    // obstacle.src = "imgs/Obstacles/Level1/obstacle.png";
     setCustomProperty(obstacle, "--top", 0);
     obstacle.style.height = "20%";
   } else {
@@ -65,10 +64,8 @@ function createObstacle() {
     setInterval(() => {
       if (isOpen) {
         obstacle.src = `${obstacleLvlFolders[currImgIdx]}/obstacle-sky-0.png`;
-        // obstacle.src = "imgs/Obstacles/Level1/obstacle-sky-0.png"; 
       } else {
         obstacle.src = `${obstacleLvlFolders[currImgIdx]}/obstacle-sky-1.png`;
-        // obstacle.src = "imgs/Obstacles/Level1/obstacle-sky-1.png";
       }
       isOpen = !isOpen;
     }, 300); 

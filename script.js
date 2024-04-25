@@ -64,6 +64,7 @@ const wardrobeModal = document.getElementById('wardrobe-modal');
 export let isPaused = false;
 export let keySelection = 0;
 export let sharkSelectionIdx = 0;
+let levelForMsg = 1;
 let hideUI = false;
 
 const bgImages = ['url(imgs/Backgrounds/bg1.gif)', 'url(imgs/Backgrounds/bg2.gif)', 'url(imgs/Backgrounds/bg3.gif)','url(imgs/Backgrounds/bg4.gif)','url(imgs/Backgrounds/bg5.gif)'];
@@ -441,10 +442,23 @@ function setPixelToWorldScale() {
 }
 
 function updateBackgroundImage() {
-  let newIdx = Math.floor(score / 150); // Change 150
+  let newIdx = Math.floor(score / 150); 
   if (newIdx !== currImgIdx) {
     currImgIdx = newIdx % bgImages.length; //loop for the available backgrounds
     document.body.style.backgroundImage = bgImages[currImgIdx];
+    let scoreToDisplay = levelForMsg * 150;
+    startScreenElem.innerText = `${scoreToDisplay}! NEW LEVEL!`;
+    startScreenElem.classList.remove('hide');
+
+    let intervalId = setInterval(() => {
+    startScreenElem.classList.toggle('hide');
+    }, 250);
+
+    setTimeout(() => {
+      clearInterval(intervalId);
+      startScreenElem.classList.add('hide');
+      levelForMsg++;
+    } , 1500);
   }
 }
 

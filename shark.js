@@ -7,7 +7,7 @@ import {
   getCustomProperty,
 } from "./updateCustomProperty.js"
 
-import {keySelection, sharkSelectionIdx, isPaused} from "./script.js"
+import { keySelection, sharkSelectionIdx, isPaused } from "./script.js"
 
 const sharkElem = document.querySelector("[data-shark]")
 const JUMP_SPEED = 0.45
