@@ -1,6 +1,7 @@
 // script.js
   // contains the main game logic
 
+
 import { updateGround, setupGround } from "./ground.js"
 import { updateShark, setupShark, getSharkRect, setSharkLose } from "./shark.js"
 import { updateObstacle, setupObstacle, getObstacleRects } from "./obstacle.js"
@@ -27,6 +28,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1500);
   }, 1500); 
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const jumpSound = document.getElementById('jumpSound');
+  const duckSound = document.getElementById('duckSound');
+  const loseSound = document.getElementById('loseSound');  
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'W' || event.key === ' ') { // Handles both 'W' and spacebar for jump
+      playSound(jumpSound);
+    } else if (event.key === 'S' || event.key === 'ArrowDown') { // Handles both 'S' and down arrow for duck
+      playSound(duckSound);
+    } 
+  });
+});
+
+function playSound(sound) {
+  if (sound.paused) {
+    sound.play();
+  } else {
+    sound.currentTime = 0;  // Rewind to the start
+    sound.play();
+  }
+}
 
 
 const WORLD_WIDTH = 100
@@ -206,6 +230,7 @@ function isCollision(rect1, rect2) {
     rect1.right > rect2.left &&
     rect1.bottom > rect2.top
   )
+
 }
 
 // increases speed scale - -game gets faster as it progresses
@@ -256,7 +281,10 @@ function handleStart() {
 
 // handles loss of game
 async function handleLose() {
+  playSound(loseSound);
+ 
   setSharkLose()
+
   isGameStarted = false
   if (keySelection === 0) {
     document.removeEventListener("keydown", spaceKeyHandler);
