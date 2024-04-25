@@ -64,7 +64,7 @@ export function setSharkLose() {
     return;
   }
   sharkElem.src = "imgs/Shark/shark-lose.png";
-  sharkElem.style.height = "25%";
+  sharkElem.style.height = "30%";
 }
 
 // handles the movement of the shark -- changes imgs according to if ducking or running or jumping
