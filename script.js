@@ -67,6 +67,7 @@ let levelForMsg = 1;
 let hideUI = false;
 export let soundsMuted = false;
 let scoreToDisplay = 0;
+let intervalId;
 
 const bgImages = ['url(imgs/Backgrounds/bg1.gif)', 'url(imgs/Backgrounds/bg2.gif)', 'url(imgs/Backgrounds/bg3.gif)','url(imgs/Backgrounds/bg4.gif)','url(imgs/Backgrounds/bg5.gif)'];
 
@@ -271,6 +272,7 @@ function handleStart() {
   } 
 
   updateBackgroundImage();
+  clearInterval(intervalId);
   if (!soundsMuted){
     backgroundMusic.play();
   }
@@ -451,19 +453,22 @@ function updateBackgroundImage() {
   if (newIdx !== currImgIdx) {
     currImgIdx = newIdx % bgImages.length; //loop for the available backgrounds
     document.body.style.backgroundImage = bgImages[currImgIdx];
-    scoreToDisplay = levelForMsg * 150;
-    startScreenElem.innerText = `${scoreToDisplay}! NEW LEVEL!`;
-    startScreenElem.classList.remove('hide');
 
-    let intervalId = setInterval(() => {
-    startScreenElem.classList.toggle('hide');
-    }, 250);
-
-    setTimeout(() => {
-      clearInterval(intervalId);
-      startScreenElem.classList.add('hide');
-      levelForMsg++;
-    } , 1500);
+    if (score > 149){
+      scoreToDisplay = levelForMsg * 150;
+      startScreenElem.innerText = `${scoreToDisplay}! NEW LEVEL!`;
+      startScreenElem.classList.remove('hide');
+  
+      intervalId = setInterval(() => {
+      startScreenElem.classList.toggle('hide');
+      }, 250);
+  
+      setTimeout(() => {
+        clearInterval(intervalId);
+        startScreenElem.classList.add('hide');
+        levelForMsg++;
+      } , 1500);
+    }
   }
 }
 
