@@ -66,6 +66,7 @@ export let sharkSelectionIdx = 0;
 let levelForMsg = 1;
 let hideUI = false;
 export let soundsMuted = false;
+let scoreToDisplay = 0;
 
 const bgImages = ['url(imgs/Backgrounds/bg1.gif)', 'url(imgs/Backgrounds/bg2.gif)', 'url(imgs/Backgrounds/bg3.gif)','url(imgs/Backgrounds/bg4.gif)','url(imgs/Backgrounds/bg5.gif)'];
 
@@ -450,7 +451,7 @@ function updateBackgroundImage() {
   if (newIdx !== currImgIdx) {
     currImgIdx = newIdx % bgImages.length; //loop for the available backgrounds
     document.body.style.backgroundImage = bgImages[currImgIdx];
-    let scoreToDisplay = levelForMsg * 150;
+    scoreToDisplay = levelForMsg * 150;
     startScreenElem.innerText = `${scoreToDisplay}! NEW LEVEL!`;
     startScreenElem.classList.remove('hide');
 
