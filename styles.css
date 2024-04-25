@@ -168,7 +168,7 @@ body {
 
 .modal-content {
   background-color: #d7f4ff;
-  margin: 15% auto; 
+  margin: 10% auto; 
   padding: 15px;
   border-radius: 5px;
   width: 40%;
@@ -350,12 +350,14 @@ body {
   width: 100%; 
   height: 100%; 
   z-index: 1000;
+  border-radius: 2px;
 }
 
 .helptitle {
-  color: #000000; 
-  font-size: 25px;
-  font-family: 'RetroComputer', monospace;
+  color: #283c95;
+  text-shadow: 1px 1px 2.5px #4055b5; 
+  font-size: 30px;
+  font-family: 'Minecrafter', monospace;
   padding: 5px 0; 
   margin: 10px 0; 
   display: block; 
@@ -369,6 +371,7 @@ body {
   margin: 10px 0; 
   display: block; 
   text-align: center; 
+  text-shadow: none;
 }
 
 .helpinfo1 {
@@ -379,6 +382,7 @@ body {
   margin: 10px 0; 
   display: block; 
   text-align: center;
+  text-shadow: none;
 }
 .helpinfo2 {
   color: #ffffff; 
@@ -388,6 +392,7 @@ body {
   margin: 10px 0; 
   display: block; 
   text-align: center;
+  text-shadow: none;
 }
 
 
@@ -396,7 +401,7 @@ body {
   top: 50%; 
   left: 50%; 
   transform: translate(-50%, -50%);
-  background-color: #fd5b5b;
+  background-color: #638ec4;
   padding: 20px;
   border: 1px solid #888;
   width: auto; 
@@ -404,16 +409,19 @@ body {
   min-width: 300px; 
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   box-sizing: border-box;
+  border-radius: 4px;
+  overflow-y: scroll;
 }
 
 .helpclose {
   color: #aaa;
   position: absolute; 
-  right: 20px; 
-  top: 20px; 
+  right: 2vmin; 
+  top: 2.5vmin; 
   font-size: 28px;
   font-weight: bold;
   cursor: pointer; 
+  text-shadow: none;
 }
 
 .helpclose:hover,
@@ -429,4 +437,10 @@ body {
     overflow-y: scroll;
     text-align: left;
   }
+}
+
+.settingstitle{
+  color: #2f62a2;
+  text-shadow: 1px 1px 2.5px #4f80bc;
+  font-size: 30px;
 }

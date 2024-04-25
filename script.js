@@ -123,9 +123,9 @@ if (leaderboard.length > 0) {
 } 
 
 if (keySelection === 0) {
-  startScreenElem.innerHTML = `SHARK TIME RUSH<br>press space to start<br><span style="font-size: 2.5vmin;">[SPACE]: JUMP &nbsp; [DOWN]: DUCK &nbsp; [X]: PAUSE/MENU</span>`;
+  startScreenElem.innerHTML = `SHARK TIME RUSH<br>press space to start<br><span style="font-size: 2.5vmin;">[SPACE]: JUMP &nbsp; [DOWN]: DUCK &nbsp; [X]: PAUSE(MENU) / RESUME</span>`;
 }else{
-  startScreenElem.innerHTML = `SHARK TIME RUSH<br>press W key to start<br><span style="font-size: 2.5vmin;">[W]: JUMP &nbsp; [S]: DUCK &nbsp; [X]: PAUSE/MENU</span>`;
+  startScreenElem.innerHTML = `SHARK TIME RUSH<br>press W key to start<br><span style="font-size: 2.5vmin;">[W]: JUMP &nbsp; [S]: DUCK &nbsp; [X]: PAUSE(MENU) / RESUME</span>`;
 }
 // updates game elements based on time passed since last update. 
 function update(time) {
@@ -158,13 +158,22 @@ function toggleMenu() {
     menuButton.textContent = "Resume";
     popupMenu.style.display = "flex";
     startScreenElem.innerText = '';
+
+    document.removeEventListener("keydown", spaceKeyHandler);
+    document.removeEventListener("keydown", WSADKeyHandler);
   } else {
     isPaused = false;
     resumeGame();
     menuButton.textContent = "Menu";
     popupMenu.style.display = "none";
+    
+    if (keySelection === 0) {
+      document.addEventListener("keydown", spaceKeyHandler);
+    } else if (keySelection === 1) {
+      document.addEventListener("keydown", WSADKeyHandler);
+    }
   }
-}
+} 
 
 const menuKeyHandler = (e) => {
   if (e.keyCode === 88) { // Check if 'X' key was pressed
