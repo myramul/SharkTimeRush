@@ -72,14 +72,6 @@ function resumeGame() {
   window.requestAnimationFrame(update);
   if (!isGameStarted) {
     isGameStarted = true;
-    leaderboardModal.style.display = "none";
-    popupMenu.style.display = "none";
-    leaderboardModal.style.display = "none";
-    popupMenu.style.display = "none";
-    usernameEntryModal.style.display = "none";
-    helpModal.style.display = "none";
-    startScreenElem.classList.add("hide");
-    settingsModal.style.display = "none";
     handleStart();
   }
 }
@@ -93,12 +85,6 @@ const spaceKeyHandler = (e) => {
   if (e.keyCode === 32 && !isGameStarted) {
     e.preventDefault();
     isGameStarted = true;
-    leaderboardModal.style.display = "none";
-    popupMenu.style.display = "none";
-    usernameEntryModal.style.display = "none";
-    helpModal.style.display = "none";
-    startScreenElem.classList.add("hide");
-    settingsModal.style.display = "none";
     handleStart();
   }
 };
@@ -107,12 +93,6 @@ const WSADKeyHandler = (e) => {
   if (e.keyCode === 87 && !isGameStarted) {
     e.preventDefault();
     isGameStarted = true;
-    leaderboardModal.style.display = "none";
-    popupMenu.style.display = "none";
-    usernameEntryModal.style.display = "none";
-    helpModal.style.display = "none";
-    startScreenElem.classList.add("hide");
-    settingsModal.style.display = "none";
     handleStart();
   }
   if (e.keyCode === 32){
@@ -239,6 +219,11 @@ function handleStart() {
   setupShark()
   setupObstacle()
   startScreenElem.classList.add("hide")
+  leaderboardModal.style.display = "none";
+  popupMenu.style.display = "none";
+  usernameEntryModal.style.display = "none";
+  helpModal.style.display = "none";
+  settingsModal.style.display = "none";
   window.requestAnimationFrame(update)
 
   if (leaderboard.length > 0) {
