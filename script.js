@@ -69,7 +69,7 @@ export let soundsMuted = false;
 let scoreToDisplay = 0;
 let intervalId;
 
-const bgImages = ['url(imgs/Backgrounds/bg1.gif)', 'url(imgs/Backgrounds/bg2.gif)', 'url(imgs/Backgrounds/bg3.gif)','url(imgs/Backgrounds/bg4.gif)','url(imgs/Backgrounds/bg5.gif)'];
+const bgImages = ['url(imgs/Backgrounds/bg1.gif)', 'url(imgs/Backgrounds/bg2.gif)', 'url(imgs/Backgrounds/bg3.gif)','url(imgs/Backgrounds/bg4.gif)'];
 
 function pauseGame() {
   cancelAnimationFrame(lastTime);
