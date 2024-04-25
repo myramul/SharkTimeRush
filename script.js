@@ -29,53 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1500);
   }, 1500); 
 });
-document.addEventListener('DOMContentLoaded', () => {
-  const jumpSound = document.getElementById('jumpSound');
-  const duckSound = document.getElementById('duckSound');
-  const loseSound = document.getElementById('loseSound');
-  const backgroundMusic = document.getElementById('backgroundMusic');
-  let gameStarted = false; // To ensure music plays only once
-
-  document.addEventListener('keydown', (event) => {
-    // Handles both 'w' (lowercase must be checked due to your check) and spacebar for jump
-    if (event.key === 'w' || event.key === ' ') {
-      playSound(jumpSound);
-    }
-    // Handles both 's' (lowercase) and 'ArrowDown' for duck
-    else if (event.key === 's' || event.key === 'ArrowDown') {
-      playSound(duckSound);
-    }
-    // Start the background music and the game with the first press of the space bar
-    if (event.code === 'Space' && !gameStarted) {
-      gameStarted = true;
-      playMusic(backgroundMusic);
-      startGame();
-    }
-  });
-});
-
-// Function to play any sound, manages if the sound is paused or already playing
-function playSound(sound) {
-  if (sound.paused) {
-    sound.play().catch(error => console.error('Error playing sound:', error));
-  } else {
-    sound.currentTime = 0; // Rewind to the start
-    sound.play().catch(error => console.error('Error playing sound:', error));
-  }
-}
-
-// Function to play music, specifically ensuring that the promise is caught if it rejects
-function playMusic(music) {
-  music.play().catch(error => {
-    console.error("Error playing music. User interaction required to start audio:", error);
-
-  });
-}
-
-function startGame() {
-  console.log("Game started");
-
-}
 
 
 const WORLD_WIDTH = 100
@@ -104,19 +57,30 @@ const muteCheckbox = document.getElementById("mutecheck");
 const spaceDownRadio = document.getElementById("SpaceDown");
 const WSADRadio = document.getElementById("WSAD");
 const hideCheckbox = document.getElementById("hidecheck");
+const backgroundMusic = document.getElementById('backgroundMusic');
+const soundBtn = document.getElementById('sound-btn');
+const wardrobeModal = document.getElementById('wardrobe-modal');
 
 let isPaused = false;
 export let keySelection = 0;
-let muteSounds = false;
+export let sharkSelectionIdx = 0;
 let hideUI = false;
 
 const bgImages = ['url(imgs/Backgrounds/bg1.gif)', 'url(imgs/Backgrounds/bg2.gif)', 'url(imgs/Backgrounds/bg3.gif)','url(imgs/Backgrounds/bg4.gif)','url(imgs/Backgrounds/bg5.gif)'];
 
 function pauseGame() {
   cancelAnimationFrame(lastTime);
+  backgroundMusic.pause();
 }
 
+document.addEventListener("keydown", (e) => {
+  if (e.keyCode === 32) {
+    e.preventDefault();
+  }
+})
+
 function resumeGame() {
+  backgroundMusic.play();
   lastTime = null;
   window.requestAnimationFrame(update);
   if (!isGameStarted) {
@@ -302,13 +266,13 @@ function handleStart() {
   } 
 
   updateBackgroundImage();
+  backgroundMusic.play();
 }
 
 // handles loss of game
 async function handleLose() {
-  playSound(loseSound);
- 
   setSharkLose()
+  backgroundMusic.pause();
 
   isGameStarted = false
   if (keySelection === 0) {
@@ -405,14 +369,30 @@ document.getElementById('help-btn').addEventListener('click', () => {
 }
 });
 
+document.getElementById('wardrobe-btn').addEventListener('click', () => {
+  document.getElementById('close-wardrobe').addEventListener('click', () => {
+    wardrobeModal.style.display = "none";
+  });
+  wardrobeModal.style.display = "block";
+
+  document.getElementById('normalShark').addEventListener('change', () => {
+    sharkSelectionIdx = 0;
+  });
+
+  document.getElementById('fancyShark').addEventListener('change', () => {
+    sharkSelectionIdx = 1;
+  });
+
+  document.getElementById('beanieShark').addEventListener('change', () => {
+    sharkSelectionIdx = 2;
+  });
+});
+
 settingsBtn.addEventListener('click', () => {
   settingsModal.style.display = "block";
   closeSettings.onclick = function() {
     settingsModal.style.display = "none";
   }
-  muteCheckbox.addEventListener("change", () => {
-    muteSounds = muteCheckbox.checked;
-  });
   
   spaceDownRadio.addEventListener("change", () => {
     keySelection = 0;
@@ -436,6 +416,15 @@ settingsBtn.addEventListener('click', () => {
       highScoreElem.style.display = "block";
     }
   });
+
+  soundBtn.addEventListener("click", () => {
+    if (backgroundMusic.paused) {
+      backgroundMusic.play();
+    } else {
+      backgroundMusic.pause();
+    }
+  });
+
 });
 
 // sets the width and height of the world element
@@ -466,37 +455,5 @@ function updateBackgroundImage() {
     document.body.style.backgroundImage = bgImages[currImgIdx];
   }
 }
-// Get the modal
-var wardrobeModal = document.getElementById('wardrobe-modal');
 
-var wardrobeBtn = document.getElementById('wardrobe-btn');
-
-var close = document.querySelector("#wardrobe-modal .close");
-wardrobeBtn.onclick = function() {
-  wardrobeModal.style.display = "block";
-}
-close.onclick = function() {
-  wardrobeModal.style.display = "none";
-}
-window.onclick = function(event) {
-  if (event.target == wardrobeModal) {
-    wardrobeModal.style.display = "none";
-  }
-}
-//shark selection
-document.querySelectorAll('input[name="shark"]').forEach(input => {
-  input.addEventListener('change', function() {
-    switch (this.value) {
-      case 'normal':
-        console.log('Normal Shark selected');
-        break;
-      case 'fancy':
-        console.log('Fancy Shark selected');
-        break;
-      case 'beanie':
-        console.log('Beanie Shark selected');
-        break;
-    }
-  });
-});
 

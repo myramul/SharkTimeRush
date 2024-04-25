@@ -11,19 +11,19 @@
 </head>
 
 <audio id="jumpSound" preload="auto">
-  <source src="jump.mp3" type="audio/mpeg">
+  <source src="sounds/jump.mp3" type="audio/mpeg">
   Your browser does not support the audio tag.
 </audio>
 <audio id="duckSound" preload="auto">
-  <source src="duck.mp3" type="audio/mpeg">
+  <source src="sounds/duck.mp3" type="audio/mpeg">
   Your browser does not support the audio tag.
 </audio>
 <audio id="loseSound" preload="auto">
-  <source src="lose.mp3" type="audio/mpeg">
+  <source src="sounds/lose.mp3" type="audio/mpeg">
   Your browser does not support the audio tag.
 </audio>
 <audio id="backgroundMusic" loop preload="auto">
-  <source src="level1.mp3" type="audio/mpeg">
+  <source src="sounds/level1.mp3" type="audio/mpeg">
   Your browser does not support the audio tag.
 </audio>
 
@@ -107,26 +107,24 @@
 
   <div id="wardrobe-modal" class="modal">
     <div class="modal-content">
-      <span class="close">&times;</span>
+      <span class="close" id="close-wardrobe">&times;</span>
       <h2>Choose Your Shark</h2>
       <form>
         <label>
-          <input type="radio" name="shark" value="normal" checked> Normal Shark
+          <input type="radio" name="shark" value=0 checked id="normalShark"> Normal Shark
         </label>
         <br>
         <label>
-          <input type="radio" name="shark" value="fancy"> Fancy Shark
+          <input type="radio" name="shark" value=1 id="fancyShark"> Fancy Shark
         </label>
         <br>
         <label>
-          <input type="radio" name="shark" value="beanie"> Beanie Shark
+          <input type="radio" name="shark" value=2 id="beanieShark"> Beanie Shark
         </label>
       </form>
     </div>
   </div>
   
-  <!-- Trigger/Open The Modal -->
-
 
   <div id="settings-modal" class="modal">
     <div class="modal-content" style="background-color: #fefefe;;">
@@ -141,19 +139,9 @@
             <label for="WSAD" style="font-family: 'RetroComputer', monospace; font-size: 16px; text-shadow: none; color: #fd7c6e;">[W]: Jump  &nbsp;[S]: Duck</label><br>
         </li>
         <li class="settingsinfo">
-          <h4 style="font-family: 'RetroComputer', monospace; color: #2f62a2; text-shadow: 0.5px 0.5px 1.5px #4f80bc; font-size: 22px;">Sounds </h4>
-        </li>
-        <button onclick="toggleMusic()">🔊/🔇 Toggle Music</button>
-        <script>
-          function toggleMusic() {
-              const music = document.getElementById('backgroundMusic');
-              if (music.paused) {
-                  music.play();
-              } else {
-                  music.pause();
-              }
-          }
-          </script>
+          <h4 style="font-family: 'RetroComputer', monospace; color: #2f62a2; text-shadow: 0.5px 0.5px 1.5px #4f80bc; font-size: 22px;">Music</h4>
+        <button class="sound-btn" id="sound-btn" style="cursor: pointer;font-family: 'RetroComputer', monospace; font-size: 16px; text-shadow: none; color: #fd7c6e;">Toggle Music</button>
+      </li>
         <li class="settingsinfo">
           <h4 style="font-family: 'RetroComputer', monospace; color: #2f62a2; text-shadow: 0.5px 0.5px 1.5px #4f80bc; font-size: 22px;">Hide UI Elements <input type="checkbox" id="hidecheck"></h4>
         </li>
@@ -169,9 +157,8 @@
   </div>
     <img src="imgs/Ground/ground.png" class="ground" data-ground>
     <img src="imgs/Ground/ground.png" class="ground" data-ground>
-    <img src="imgs/Shark/shark-stationary.png" alt="Stationary Shark" class="shark" style="height: 30%;" data-shark="true">
+    <img src="imgs/Shark/shark-stationary.png" class="shark" data-shark>
   </div>
-
 
 </body>
 </html>
