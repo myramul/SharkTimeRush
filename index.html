@@ -108,17 +108,17 @@
   <div id="wardrobe-modal" class="modal">
     <div class="modal-content">
       <span class="close" id="close-wardrobe">&times;</span>
-      <h2>Choose Your Shark</h2>
+      <h2 style="letter-spacing: 0.15rem; font-size: 35px;">SELECT Shark</h2>
       <form>
-        <label>
-          <input type="radio" name="shark" value=0 checked id="normalShark"> Normal Shark
+        <label style="letter-spacing: 0.15rem; font-family: 'Jersey10', monospace; color: #2f62a2; text-shadow: 0.5px 0.5px 1.5px #4f80bc; font-size: 35px;">
+          <input type="radio" name="shark" value=0 checked id="normalShark"> Plain Shark
         </label>
         <br>
-        <label>
+        <label style="letter-spacing: 0.15rem; font-family: 'Jersey10', monospace; color: #2f62a2; text-shadow: 0.5px 0.5px 1.5px #4f80bc; font-size: 35px;">
           <input type="radio" name="shark" value=1 id="fancyShark"> Fancy Shark
         </label>
         <br>
-        <label>
+        <label style="letter-spacing: 0.15rem; font-family: 'Jersey10', monospace; color: #2f62a2; text-shadow: 0.5px 0.5px 1.5px #4f80bc; font-size: 35px;">
           <input type="radio" name="shark" value=2 id="beanieShark"> Beanie Shark
         </label>
       </form>
@@ -127,23 +127,23 @@
   
 
   <div id="settings-modal" class="modal">
-    <div class="modal-content" style="background-color: #fefefe;;">
-      <span class="settingsclose" style="align-self: right; text-align: right; float: right;">&times;</span>
+    <div class="modal-content" style="background-color: #fefefe;">
+      <span class="settingsclose" style="align-self: right; text-align: right; float: right; padding: 5px 5px; margin: 5px 5px;">&times;</span>
       <h2 class="settingstitle" style="align-self: center; text-align: center;" >Settings</h2>
       <ul style="list-style-type: none;">
         <li class="settingsinfo">
-          <h4 style="font-family: 'RetroComputer', monospace; color: #2f62a2; text-shadow: 0.5px 0.5px 1.5px #4f80bc; font-size: 22px;">Key Selection </h4>
+          <h4 style="letter-spacing: 0.15rem; font-family: 'RetroComputer', monospace; color: #2f62a2; text-shadow: 0.5px 0.5px 1.5px #4f80bc; font-size: 22px;">Key Selection </h4>
             <input type="radio" id="SpaceDown" name="keyselect" value="0" checked>
-            <label for="SpaceDown" style="font-family: 'RetroComputer', monospace; font-size: 16px; text-shadow: none; color: #fd7c6e;">[SPACE]: Jump  &nbsp;[DOWN]: Duck</label><br>
+            <label for="SpaceDown" style="font-family: 'Jersey10', monospace; font-size: 28px; text-shadow: none; color: #fd7c6e;">[SPACE]: Jump  &nbsp;[DOWN]: Duck</label><br>
             <input type="radio" id="WSAD" name="keyselect" value="1">
-            <label for="WSAD" style="font-family: 'RetroComputer', monospace; font-size: 16px; text-shadow: none; color: #fd7c6e;">[W]: Jump  &nbsp;[S]: Duck</label><br>
+            <label for="WSAD" style="font-family: 'Jersey10', monospace; font-size: 28px; text-shadow: none; color: #fd7c6e;">[W]: Jump  &nbsp;[S]: Duck</label><br>
         </li>
         <li class="settingsinfo">
-          <h4 style="font-family: 'RetroComputer', monospace; color: #2f62a2; text-shadow: 0.5px 0.5px 1.5px #4f80bc; font-size: 22px;">Music and Sounds</h4>
+          <h4 style="letter-spacing: 0.15rem; font-family: 'RetroComputer', monospace; color: #2f62a2; text-shadow: 0.5px 0.5px 1.5px #4f80bc; font-size: 22px;">Music and Sounds</h4>
         <button class="sound-btn" id="sound-btn" style="cursor: pointer;font-family: 'RetroComputer', monospace; font-size: 16px; text-shadow: none; color: #fd7c6e;">Sound: On</button>
       </li>
         <li class="settingsinfo">
-          <h4 style="font-family: 'RetroComputer', monospace; color: #2f62a2; text-shadow: 0.5px 0.5px 1.5px #4f80bc; font-size: 22px;">Hide UI Elements <input type="checkbox" id="hidecheck"></h4>
+          <h4 style="letter-spacing: 0.15rem; font-family: 'RetroComputer', monospace; color: #2f62a2; text-shadow: 0.5px 0.5px 1.5px #4f80bc; font-size: 22px;">Hide UI Elements <input type="checkbox" id="hidecheck"></h4>
         </li>
       </ul>
     </div>
@@ -153,7 +153,7 @@
   <div class="score" data-score>0</div>
   <div class="start-screen" data-start-screen>
     SHARK TIME RUSH<br>press space to start<br>
-    <span style="font-size: 2.5vmin;">[SPACE]: JUMP &nbsp; [DOWN]: DUCK &nbsp; [X]: PAUSE(MENU) / RESUME</span>
+    <span style="font-size: 2.5vmin;">[SPACE]: JUMP &nbsp; [DOWN]: DUCK &nbsp; [X]: PAUSE(MENU)</span>
   </div>
     <img src="imgs/Ground/ground.png" class="ground" data-ground>
     <img src="imgs/Ground/ground.png" class="ground" data-ground>
