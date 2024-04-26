@@ -18,8 +18,8 @@
   box-sizing: border-box;
   user-select: none;
   font-family: 'Minecrafter';
-  color: #ffda41;
-  text-shadow: 2px 2px 3.5px darkorange;
+  color: #0d3f89;
+  text-shadow: 2px 2px 3.5px rgb(255, 255, 255);
 }
 
 .logo-screen, .credits-screen {
@@ -135,8 +135,8 @@ body {
   font-size: 3.5vmin;
   right: 2vmin;
   top: 6vmin;
-  color: #f4a261;
-  text-shadow: 2px 2px 3.5px #ff4040;
+  color: #98114e;
+  text-shadow: 2px 2px 3.5px #ffffff;
 }
 
 .menu-btn{
@@ -150,15 +150,15 @@ body {
   outline: none;
   color: #fff;
   text-shadow: none;
-  background-color: #92CD41;
+  background-color: #297b96;
   border: none;
   border-radius: 20px;
   box-shadow: 0 2px #999;
 }
 
-.menu-btn:hover {background-color: #75be0f}
+.menu-btn:hover {background-color:  #297b96}
 .menu-btn:active {
-  background-color: #75be0f;
+  background-color:  #297b96;
   box-shadow: 0 1px #666;
   transform: translateY(4px);
 }
@@ -186,7 +186,7 @@ body {
 }
 
 .title-modal{
-  color: #135b77;
+  color: #670b79;
   text-shadow: 0.5px 0.5px 1px rgb(3, 44, 60);
   font-size: 35px;
   letter-spacing: 0.15rem;
@@ -205,8 +205,8 @@ body {
 }
 
 .user-label{
-  color: #92CD41;
-  text-shadow: 0.5px 0.5px 1px #477507;
+  color: #65173a;
+  text-shadow: 0.5px 0.5px 1px #ffffff;
   font-size: 25px;
   font-family: 'RetroComputer', monospace;
 }
@@ -219,15 +219,15 @@ body {
   outline: none;
   color: #fff;
   text-shadow: none;
-  background-color: #92CD41;
+  background-color: #98114e;
   border: none;
   border-radius: 20px;
   box-shadow: 0 2px #999;
 }
 
-.submit-btn:hover {background-color: rgb(91, 148, 11)}
+.submit-btn:hover {background-color:#98114e(91, 148, 11)}
 .submit-btn:active {
-  background-color: rgb(91, 148, 11);
+  background-color: #98114e(91, 148, 11);
   box-shadow: 0 1px #666;
   transform: translateY(4px);
 }
@@ -276,8 +276,8 @@ body {
 }
 
 .lead-entry {
-  color: #f4a261;
-  text-shadow: 1px 1px 1.5px #ff4040;
+  color: #321660;
+  text-shadow: 1px 1px 1.5px #ffffff;
   font-size: 27px;
   font-family: 'RetroComputer', monospace;
   text-align: right;
