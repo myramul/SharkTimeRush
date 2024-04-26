@@ -69,7 +69,7 @@ export let soundsMuted = false;
 let scoreToDisplay = 0;
 let intervalId;
 
-const bgImages = ['url(imgs/Backgrounds/bg1.gif)', 'url(imgs/Backgrounds/bg2.gif)', 'url(imgs/Backgrounds/bg3.gif)','url(imgs/Backgrounds/bg4.gif)'];
+const bgImages = ['url(imgs/Backgrounds/bg1.gif)', 'url(imgs/Backgrounds/bg2.gif)', 'url(imgs/Backgrounds/bg3.gif)'];
 
 function pauseGame() {
   cancelAnimationFrame(lastTime);
@@ -96,7 +96,7 @@ function resumeGame() {
 
 setPixelToWorldScale()
 window.addEventListener("resize", setPixelToWorldScale)
-let isGameStarted = false
+export let isGameStarted = false
 
 // adds space button to start
 const spaceKeyHandler = (e) => {
@@ -147,7 +147,7 @@ if (keySelection === 0) {
 }
 // updates game elements based on time passed since last update. 
 function update(time) {
-  if (!isPaused) {
+  if (!isPaused && isGameStarted) {
     if (lastTime == null) {
       lastTime = time;
     }
@@ -264,6 +264,9 @@ function handleStart() {
   usernameEntryModal.style.display = "none";
   helpModal.style.display = "none";
   settingsModal.style.display = "none";
+
+  scoreElem.style.opacity = "1"
+  highScoreElem.style.opacity = "1"
   window.requestAnimationFrame(update)
 
   if (leaderboard.length > 0) {
@@ -284,6 +287,7 @@ async function handleLose() {
   setSharkLose()
   if (!soundsMuted){
     backgroundMusic.pause();
+    backgroundMusic.currentTime = 0;
   }
   if (keySelection === 0) {
     document.removeEventListener("keydown", spaceKeyHandler);
@@ -291,6 +295,9 @@ async function handleLose() {
     document.removeEventListener("keydown", WSADKeyHandler);
   }
   document.removeEventListener("keydown", menuKeyHandler);
+  clearInterval(intervalId);
+  scoreElem.style.opacity = "0"
+  highScoreElem.style.opacity = "0"
   // displays game over screen depending on score
   if (score > currHighScore){
     if (keySelection === 0) {
@@ -300,9 +307,9 @@ async function handleLose() {
     }
   }else{
     if (keySelection === 0) {
-      startScreenElem.innerText = "game over \n SCORE: " + Math.floor(score) + "  HIGH: " + currHighScore + "\npress space to play again"
+      startScreenElem.innerText = "game over \n YOUR SCORE: " + Math.floor(score) + "  \nHIGH SCORE: " + currHighScore + "\npress space to play again"
     }else{
-      startScreenElem.innerText = "game over \n SCORE: " + Math.floor(score) + "  HIGH: " + currHighScore + "\npress W to play again"
+      startScreenElem.innerText = "game over \n YOUR SCORE: " + Math.floor(score) + "  \nHIGH SCORE: " + currHighScore + "\npress W to play again"
     }
   }
   startScreenElem.classList.remove("hide")
@@ -460,8 +467,8 @@ function updateBackgroundImage() {
       startScreenElem.classList.remove('hide');
   
       intervalId = setInterval(() => {
-      startScreenElem.classList.toggle('hide');
-      }, 250);
+        startScreenElem.classList.toggle('hide');
+      }, 300);
   
       setTimeout(() => {
         clearInterval(intervalId);
