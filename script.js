@@ -141,9 +141,9 @@ if (leaderboard.length > 0) {
 } 
 
 if (keySelection === 0) {
-  startScreenElem.innerHTML = `SHARK TIME RUSH<br>press space to start<br><span style="font-size: 2.5vmin;">[SPACE]: JUMP &nbsp; [DOWN]: DUCK &nbsp; [X]: PAUSE(MENU) / RESUME</span>`;
+  startScreenElem.innerHTML = `<span style="font-size: 6vmin;">SHARK TIME RUSH<span><br><br><span style="font-family: 'Jersey10', monospace; font-size: 5vmin; letter-spacing: 0.15rem; color: #484b8a; text-shadow: 0.5px 0.5px 1.3px #31346e;">Press SPACE to start</span><br><span style="font-family: 'Jersey10', monospace; font-size: 3.3vmin; letter-spacing: 0.15rem; color: #484b8a; text-shadow: 0.5px 0.5px 1.3px #31346e;">[SPACE]: JUMP &nbsp; [DOWN]: DUCK &nbsp; [X]: PAUSE(MENU)</span>`;
 }else{
-  startScreenElem.innerHTML = `SHARK TIME RUSH<br>press W key to start<br><span style="font-size: 2.5vmin;">[W]: JUMP &nbsp; [S]: DUCK &nbsp; [X]: PAUSE(MENU) / RESUME</span>`;
+  startScreenElem.innerHTML = `<span style="font-size: 6vmin;">SHARK TIME RUSH<span><br><br><span style="font-family: 'Jersey10', monospace; font-size: 5vmin; letter-spacing: 0.15rem; color: #484b8a; text-shadow: 0.5px 0.5px 1.3px #31346e;">Press W to start</span><br><span style="font-family: 'Jersey10', monospace; font-size: 3.3vmin; letter-spacing: 0.15rem; color: #484b8a; text-shadow: 0.5px 0.5px 1.3px #31346e;">[W]: JUMP &nbsp; [S]: DUCK &nbsp; [X]: PAUSE(MENU)</span>`;
 }
 // updates game elements based on time passed since last update. 
 function update(time) {
@@ -301,15 +301,43 @@ async function handleLose() {
   // displays game over screen depending on score
   if (score > currHighScore){
     if (keySelection === 0) {
-      startScreenElem.innerText = "game over \n NEW HIGH SCORE: " + Math.floor(score) + "\npress space to play again"
+      startScreenElem.innerHTML = `
+        <span style="color: #f05a4f; text-shadow: 2px 2px 3px #c43d33;">game over</span>
+        <br><br>
+        <span style="color: #ffda41; text-shadow: 2px 2px 3.5px darkorange;">NEW HIGH SCORE: ${Math.floor(score)}</span>
+        <br><br>
+        <span style="color: #92cc41; text-shadow: 2px 2px 3px #738834;">press space to play again</span>
+      `;
     }else{
-      startScreenElem.innerText = "game over \n NEW HIGH SCORE: " + Math.floor(score) + "\npress W to play again"
+      startScreenElem.innerHTML = `
+        <span style="color: #f05a4f; text-shadow: 2px 2px 3px #c43d33;">game over</span>
+        <br><br>
+        <span style="color: #ffda41; text-shadow: 2px 2px 3.5px darkorange;">NEW HIGH SCORE: ${Math.floor(score)}</span>
+        <br><br>
+        <span style="color:  #92cc41; text-shadow: 2px 2px 3px #738834;">press W to play again</span>
+      `;
     }
   }else{
     if (keySelection === 0) {
-      startScreenElem.innerText = "game over \n YOUR SCORE: " + Math.floor(score) + "  \nHIGH SCORE: " + currHighScore + "\npress space to play again"
+      startScreenElem.innerHTML = `
+        <span style="color: #f05a4f; text-shadow: 2px 2px 3px #c43d33;">game over</span>
+        <br><br>
+        <span style="color: #ffda41; text-shadow: 2px 2px 3.5px darkorange;">YOUR SCORE: ${Math.floor(score)}</span>
+        <br>
+        <span style="color: #ffda41; text-shadow: 2px 2px 3.5px darkorange;">HIGH SCORE: ${currHighScore}</span>
+        <br><br>
+        <span style="color: #92cc41; text-shadow: 2px 2px 3px #738834;">press space to play again</span>
+      `;
     }else{
-      startScreenElem.innerText = "game over \n YOUR SCORE: " + Math.floor(score) + "  \nHIGH SCORE: " + currHighScore + "\npress W to play again"
+      startScreenElem.innerHTML = `
+        <span style="color: #f05a4f; text-shadow: 2px 2px 3px #c43d33;">game over</span>
+        <br><br>
+        <span style="color: #ffda41; text-shadow: 2px 2px 3.5px darkorange;">YOUR SCORE: ${Math.floor(score)}</span>
+        <br>
+        <span style="color: #ffda41; text-shadow: 2px 2px 3.5px darkorange;">HIGH SCORE: ${currHighScore}</span>
+        <br><br>
+        <span style="color:  #92cc41; text-shadow: 2px 2px 3px #738834;">press W to play again</span>
+      `;
     }
   }
   startScreenElem.classList.remove("hide")
@@ -431,15 +459,16 @@ settingsBtn.addEventListener('click', () => {
     }
   });
 
-  soundBtn.addEventListener("click", () => {
-    if (soundsMuted){
-      soundBtn.innerText = "Sound: On";
-      soundsMuted = false;
-    }else{
-      soundBtn.innerText = "Sound: Off";
-      soundsMuted = true;
-    }
-  });
+});
+
+soundBtn.addEventListener("click", () => {
+  if (soundsMuted){
+    soundBtn.innerText = "Sound: On";
+    soundsMuted = false;
+  }else{
+    soundBtn.innerText = "Sound: Off";
+    soundsMuted = true;
+  }
 });
 
 // sets the width and height of the world element

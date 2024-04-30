@@ -13,13 +13,12 @@
   src: url('fonts/Jersey_10/Jersey10-Regular.ttf');
 }
 
-
 *, *::before, *::after {
   box-sizing: border-box;
   user-select: none;
   font-family: 'Minecrafter';
-  color: #0d3f89;
-  text-shadow: 2px 2px 3.5px rgb(255, 255, 255);
+  color: #ffda41;
+  text-shadow: 2px 2px 3.5px darkorange;
 }
 
 .logo-screen, .credits-screen {
@@ -88,7 +87,7 @@ body {
 .start-screen {
   position: absolute;
   font-size: 5.3vmin;
-  top: 30%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -135,8 +134,8 @@ body {
   font-size: 3.5vmin;
   right: 2vmin;
   top: 6vmin;
-  color: #98114e;
-  text-shadow: 2px 2px 3.5px #ffffff;
+  color: #f4a261;
+  text-shadow: 2px 2px 3.5px #ff4040;
 }
 
 .menu-btn{
@@ -150,15 +149,15 @@ body {
   outline: none;
   color: #fff;
   text-shadow: none;
-  background-color: #297b96;
+  background-color: #92CD41;
   border: none;
   border-radius: 20px;
   box-shadow: 0 2px #999;
 }
 
-.menu-btn:hover {background-color:  #297b96}
+.menu-btn:hover {background-color: #75be0f}
 .menu-btn:active {
-  background-color:  #297b96;
+  background-color: #75be0f;
   box-shadow: 0 1px #666;
   transform: translateY(4px);
 }
@@ -186,10 +185,10 @@ body {
 }
 
 .title-modal{
-  color: #670b79;
+  color: #135b77;
   text-shadow: 0.5px 0.5px 1px rgb(3, 44, 60);
   font-size: 35px;
-  letter-spacing: 0.15rem;
+  letter-spacing: 0.2rem;
 }
 
 .input-username{
@@ -205,10 +204,10 @@ body {
 }
 
 .user-label{
-  color: #65173a;
-  text-shadow: 0.5px 0.5px 1px #ffffff;
-  font-size: 25px;
-  font-family: 'RetroComputer', monospace;
+  color: #17886f;
+  text-shadow: 0.5px 0.5px 1px #2bb99a;
+  font-size: 35px;
+  font-family: 'Jersey10', monospace;
 }
 
 .submit-btn{
@@ -219,15 +218,15 @@ body {
   outline: none;
   color: #fff;
   text-shadow: none;
-  background-color: #98114e;
+  background-color: #92CD41;
   border: none;
   border-radius: 20px;
   box-shadow: 0 2px #999;
 }
 
-.submit-btn:hover {background-color:#98114e(91, 148, 11)}
+.submit-btn:hover {background-color: rgb(91, 148, 11)}
 .submit-btn:active {
-  background-color: #98114e(91, 148, 11);
+  background-color: rgb(91, 148, 11);
   box-shadow: 0 1px #666;
   transform: translateY(4px);
 }
@@ -276,10 +275,11 @@ body {
 }
 
 .lead-entry {
-  color: #321660;
-  text-shadow: 1px 1px 1.5px #ffffff;
-  font-size: 27px;
-  font-family: 'RetroComputer', monospace;
+  color: #f4a261;
+  text-shadow: 1px 1px 1.5px #ff4040;
+  font-size: 45px;
+  font-family: 'Jersey10', monospace;
+  letter-spacing: 0.15rem;
   text-align: right;
   margin-bottom: 10px; 
   align-self: flex-end;
@@ -303,13 +303,13 @@ body {
 }
 
 #leaderboard-btn {
-  background-color: #4336f4; 
+  background-color: #363182; 
   margin-right: 190px;
 }
 
-#leaderboard-btn:hover {background-color: #2f21f2}
+#leaderboard-btn:hover {background-color: #1e1a5d}
 #leaderboard-btn:active {
-  background-color: #2f21f2;
+  background-color: #1e1a5d;
   box-shadow: 0 1px #666;
   transform: translateY(4px);
 }
@@ -327,14 +327,14 @@ body {
 }
 
 #help-btn {
-  background-color: #f44336;
+  background-color: #c9463c;
   margin-right: -60px;
   margin-left: 20px;
 }
 
-#help-btn:hover {background-color: #d22115}
+#help-btn:hover {background-color: #a0342c}
 #help-btn:active {
-  background-color: #d22115;
+  background-color: #a0342c;
   box-shadow: 0 1px #666;
   transform: translateY(4px);
 }
@@ -365,7 +365,7 @@ body {
 .helptitle {
   color: #283c95;
   text-shadow: 1px 1px 2.5px #4055b5; 
-  font-size: 40px;
+  font-size: 35px;
   font-family: 'Minecrafter', monospace;
   padding: 3px 0; 
   margin: 5px 0; 
@@ -375,34 +375,37 @@ body {
 }
 .helptitle2 {
   color: #4055b5;
-  font-size: 30px;
+  font-size: 27px;
   font-family: 'Jersey10', monospace;
   padding: 3px 0; 
   margin: 3px 0; 
   display: block; 
   text-align: center; 
   text-shadow: none;
+  letter-spacing: 0.15rem;
 }
 
 .helpinfo1 {
   color: #ffffff; 
-  font-size: 30px;
+  font-size: 25px;
   font-family: 'Jersey10', monospace;
   padding: 5px 0; 
   margin: 10px 0; 
   display: block; 
   text-align: center;
   text-shadow: none;
+  letter-spacing: 0.15rem;
 }
 .helpinfo2 {
   color: #ffffff; 
-  font-size: 30px;
+  font-size: 25px;
   font-family: 'Jersey10', monospace;
   padding: 5px 0; 
   margin: 10px 0; 
   display: block; 
   text-align: center;
   text-shadow: none;
+  letter-spacing: 0.15rem;
 }
 
 
@@ -420,6 +423,7 @@ body {
   box-sizing: border-box;
   border-radius: 4px;
   overflow-y: scroll;
+  letter-spacing: 0.15rem;
 }
 
 .helpclose {
@@ -442,6 +446,12 @@ body {
 #settings-modal {
   display: none; 
   text-align: left;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  position: fixed;
+  overflow: hidden;
   .modal-content{
     overflow-y: scroll;
     text-align: left;
