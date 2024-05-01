@@ -12,6 +12,8 @@ import { currImgIdx } from "./script.js"
 const SPEED = 0.05
 const OBSTACLE_INTERVAL_MIN = 550 // min time between obstacles
 const OBSTACLE_INTERVAL_MAX = 2000 // max time between obstacles
+
+
 const worldElem = document.querySelector("[data-world]")
 const obstacleLvlFolders = ["imgs/Obstacles/Level1", "imgs/Obstacles/Level2", "imgs/Obstacles/Level3"]
 let nextObstacleTime

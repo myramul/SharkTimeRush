@@ -26,3 +26,16 @@
     - To close the server once you are done playing, simply click on the Port button that replaced the Go Live button
 
 
+**DORCHAK MODE (HOW TO MODIFY THE DIFFICULTY OF THE GAME)**
+- Open the 'obstacle.js' file
+
+- Right at the top of the file there are 3 constants (Line 12,13,14): 
+    - SPEED, OBSTACLE_INTERVAL_MIN, and OBSTACLE_INTERVAL_MAX
+
+- If you lower the starting speed, and increase the obstacle min and max values, 
+  the game will be significantly easier.
+
+- Some good values to try to make the game easier are:
+    SPEED = 0.03, 
+    OBSTACLE_INTERVAL_MIN = 650
+    OBSTACL_INTERVAL_MAX =  2350
