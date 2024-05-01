@@ -67,7 +67,6 @@ let levelForMsg = 1;
 let hideUI = false;
 export let soundsMuted = false;
 let scoreToDisplay = 0;
-let intervalId;
 
 const bgImages = ['url(imgs/Backgrounds/bg1.gif)', 'url(imgs/Backgrounds/bg2.gif)', 'url(imgs/Backgrounds/bg3.gif)'];
 
@@ -275,7 +274,6 @@ function handleStart() {
   } 
 
   updateBackgroundImage();
-  clearInterval(intervalId);
   if (!soundsMuted){
     backgroundMusic.play();
   }
@@ -295,7 +293,6 @@ async function handleLose() {
     document.removeEventListener("keydown", WSADKeyHandler);
   }
   document.removeEventListener("keydown", menuKeyHandler);
-  clearInterval(intervalId);
   scoreElem.style.opacity = "0"
   highScoreElem.style.opacity = "0"
   // displays game over screen depending on score
@@ -485,27 +482,24 @@ function setPixelToWorldScale() {
 }
 
 function updateBackgroundImage() {
-  let newIdx = Math.floor(score / 150); 
-  if (newIdx !== currImgIdx) {
-    currImgIdx = newIdx % bgImages.length; //loop for the available backgrounds
+  if (currImgIdx === undefined) {
+    currImgIdx = Math.floor(score / 150); // Initialize currImgIdx based on score
+    document.body.style.backgroundImage = bgImages[currImgIdx];
+  }
+
+  // Check if the score has increased by a multiple of 150
+  if (Math.floor(score) % 150 === 0) {
+    currImgIdx = Math.floor(score / 150) % bgImages.length; // Update currImgIdx
     document.body.style.backgroundImage = bgImages[currImgIdx];
 
-    if (score > 149){
-      scoreToDisplay = levelForMsg * 150;
-      startScreenElem.innerText = `${scoreToDisplay}! NEW LEVEL!`;
+    if (score > 149.999) {
+      startScreenElem.innerText = `${Math.floor(score)}! NEW LEVEL!`;
       startScreenElem.classList.remove('hide');
-  
-      intervalId = setInterval(() => {
-        startScreenElem.classList.toggle('hide');
-      }, 300);
-  
+
+      // Hide the message after 1500ms
       setTimeout(() => {
-        clearInterval(intervalId);
         startScreenElem.classList.add('hide');
-        levelForMsg++;
-      } , 1500);
+      }, 1500);
     }
   }
 }
-
-
