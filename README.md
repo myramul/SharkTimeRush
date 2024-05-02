@@ -1,6 +1,10 @@
 **SHARK TIME RUSH**
-    - Shark Time Rush is an endless runner game.
-    - Credits: John Fentnor, Kyle Goodey, Mehvish Hussain, Myra Mulongoti, Nate Pyram, Ben Simens, Samina Mussarat
+
+Shark Time Rush is an endless runner game.
+
+Credits:
+John Fentnor, Kyle Goodey, Mehvish Hussain, 
+Myra Mulongoti, Nate Pyram, Ben Simens, Samina Mussarat
 
 
 **INSTALLATION AND SET UP INSTRUCTIONS**
