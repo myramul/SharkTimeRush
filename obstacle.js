@@ -8,12 +8,13 @@ import {
 } from "./updateCustomProperty.js"
 
 import { currImgIdx } from "./script.js"
+let DorchakMode = false;
 
 const SPEED = 0.05
-const OBSTACLE_INTERVAL_MIN = 550 // min time between obstacles
-const OBSTACLE_INTERVAL_MAX = 2000 // max time between obstacles
+let OBSTACLE_INTERVAL_MIN = DorchakMode ? 850 : 550 // min time between obstacles
+let OBSTACLE_INTERVAL_MAX = DorchakMode ? 3250 : 2000 // max time between obstacles
 
-
+const dorchakModeCheckBox = document.getElementById("dorchakmode");
 const worldElem = document.querySelector("[data-world]")
 const obstacleLvlFolders = ["imgs/Obstacles/Level1", "imgs/Obstacles/Level2", "imgs/Obstacles/Level3"]
 let nextObstacleTime
@@ -81,3 +82,9 @@ function createObstacle() {
 function randomNumberBetween(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
+
+dorchakModeCheckBox.addEventListener("change", () => {
+  DorchakMode = dorchakModeCheckBox.checked;
+  OBSTACLE_INTERVAL_MIN = DorchakMode ? 850 : 550;
+  OBSTACLE_INTERVAL_MAX = DorchakMode ? 3250 : 2000;
+})

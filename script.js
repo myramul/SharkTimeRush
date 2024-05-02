@@ -496,10 +496,12 @@ function updateBackgroundImage() {
       startScreenElem.innerText = `${Math.floor(score)}! NEW LEVEL!`;
       startScreenElem.classList.remove('hide');
 
+      if (isGameStarted){
       // Hide the message after 1500ms
       setTimeout(() => {
         startScreenElem.classList.add('hide');
-      }, 1500);
+      }, 1100);
+      }
     }
   }
 }
